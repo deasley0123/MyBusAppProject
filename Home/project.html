@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--
+	JavaScript Function File Imports
+-->
+	<!---<script type="text/javascript" src="448projTest.js"></script>-->
+	
+<!--
+	jQuery Library Imports
+-->
+	<!-- Include meta tag to ensure proper rendering and touch zooming 
+	Also, allows for user to take control over visible area of app.
+	Affects page zoom and whatnot -->
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Include jQuery Mobile stylesheets -->
+	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+	<!-- Include the jQuery library -->
+	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+	<!-- Include the jQuery Mobile library -->
+	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	
+	<!-- To host jQuery Mobile library by yourself, uncomment
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="jquery.mobile-1.4.5.css">
+	<script src="jquery.js"></script>
+	<script src="jquery.mobile-1.4.5.js"></script>
+	-->
+	
+<!-- 
+	JavaScript Imports 
+-->
+	<script type="text/javascript" src="essentialFunctions.js"></script>
+
+<!--
+	CSS Imports
+-->
+	<link href="main.css" rel="stylesheet" type="text/css" />
+	
+<!----------------------
+	HTML CODE
+-->---------------------
+	
+	<link href="main.css" rel="stylesheet" type="text/css" />
+	<title>||Working with elements||</title>
+</head>
+
+<!-- Loads main page -->
+<!-- onload="main()" -->
+<body onload="main()">
+<!--
+	Div - Homepage - 1
+-->
+<div data-role="page" id="pageOne"> <!--Page displayed by browser-->
+  <div data-role="header"> <!--Makes a toolbar at top of page-->
+    <h1>MyBus Home</h1>
+  </div>
+  
+  <div data-role="main" class="ui-content"> <!--Defines content of page, class adds extra padding and margin-->
+	<div id="pageOneButtons" data-role="controlgroup" data-type="vertical">
+		<a href="#pageTwo" data-transition="slide" class="ui-btn">Routes</a>
+	</div>
+  </div>
+  
+  <div data-role="footer"> <!--Makes a toolbar at bottom of page-->
+    <h1>Footer Text</h1>
+  </div>
+</div>
+ 
+<!--
+	Div - Page after slide - 2 - Bus Route Page
+-->
+<div data-role="page" id="pageTwo"> <!--Page displayed by browser-->
+  <div data-role="header"> <!--Makes a toolbar at top of page-->
+    <h1>MyBus Routes</h1>
+  </div>
+
+  <div data-role="main" class="ui-content"> <!--Defines content of page, class adds extra padding and margin-->
+    <div id="subtitleOne"><h4>Select from the following bus routes</h4></div>
+	
+	<div id="pageTwoButtons" data-role="controlgroup" data-type="vertical">
+	<!--
+		Handled by function
+	-->
+	</div>
+  </div>
+
+  <div data-role="footer"> <!--Makes a toolbar at bottom of page-->
+    <h1>Footer Text</h1>
+  </div>
+</div>
+
+<!--
+	Div - Page after slide - 3 - Bus Stop Page
+-->
+<div data-role="page" id="pageThree">
+	<div data-role="header">
+		<h1>Bus Stops</h1>
+	</div>
+	
+	<div data-role="main" class="ui-content">
+		<!--
+		<p>Hit this to go back <b>Note</b>: Fade is default.</p>
+		-->
+		<div id="subtitleOne"><h4>Select from the following bus stops</h4></div>
+		
+		<div id="pageThreeButtons" data-role="controlgroup" data-type="vertical">
+		<!--
+		Handled by function
+		-->
+		</div>
+	</div>
+	
+	<div data-role="footer">
+		<h1>Footer Text</h1>
+	</div>
+</div>
+
+<!--
+	Div - Page after slide - 4 - Data
+-->
+<div data-role="page" id="pageData">
+	<div data-role="header">
+		<h1>Bus Info</h1>
+	</div>
+	
+	<div data-role="main" id="body_data" class="ui-content">
+		
+	</div>
+
+	<div data-role="footer">
+		<h1>Footer Text</h1>
+	</div>
+</div>
+</body>
+</html>
+
+<!--
+	Div test
+-->
+<div data-role="page" id="pageTest">
+	
+</div>
+
+
+
+
+
+
+
+
