@@ -2,8 +2,8 @@ var noon = "";
 var bushour = "";
 var busminutes = "";
 main = function(){
-	var bustime = ["am:12:00", "pm:1:00", "pm:2:38", "pm:2:40", "pm:5:00"];
-	console.log(searchtime(bustime));
+	var busTime = ["am:12:00", "pm:1:00", "pm:2:38", "pm:2:40", "pm:5:00"];
+	console.log(searchtime(busTime));
 }
 
 searchtime = function(param){
@@ -12,6 +12,8 @@ loop1:
 	for(var i=0; i<param.length; i++)
 	{
 		var timestate = 0;
+		var BusSecond = 0;
+		var timedifference = 0;
 		noon = "";
 		bushour = "";
 		busminutes = "";
@@ -38,16 +40,18 @@ loop2:
 				timestate++;
 			}
 		}
+		
 		if(noon == "am")
 		{
-			var BusSecond = parseInt(bushour)*3600 + parseInt(busminutes)*60;
+			BusSecond = parseInt(bushour)*3600 + parseInt(busminutes)*60;
 		}
 		else
 		{
-			var BusSecond = (parseInt(bushour)+12)*3600 + parseInt(busminutes)*60;
+			BusSecond = (parseInt(bushour)+12)*3600 + parseInt(busminutes)*60;
 			console.log("BusSecond: "+BusSecond);
 		}
-		var timedifference = RealSecond-BusSecond;
+		
+		timedifference = RealSecond-BusSecond;
 		console.log("timedifference: "+timedifference);
 		if(timedifference <= 0 && RealSecond-BusSecond>=-300)
 		{
