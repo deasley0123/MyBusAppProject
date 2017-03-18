@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+<!--
+	jQuery Library Imports
+-->
+	<!-- Include meta tag to ensure proper rendering and touch zooming 
+	Also, allows for user to take control over visible area of app.
+	Affects page zoom and whatnot -->
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Include jQuery Mobile stylesheets -->
+	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+	<!-- Include the jQuery library -->
+	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+	<!-- Include the jQuery Mobile library -->
+	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	
+	<!-- To host jQuery Mobile library by yourself, uncomment
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="jquery.mobile-1.4.5.css">
+	<script src="jquery.js"></script>
+	<script src="jquery.mobile-1.4.5.js"></script>
+	-->
+	
+<!-- 
+	JavaScript Imports 
+-->
+	<script type="text/javascript" src="essentialFunctions.js"></script>
+
+<!--
+	CSS Imports
+-->
+	<link href="main.css" rel="stylesheet" type="text/css" />
+	
+<!----------------------
+	HTML CODE
+-->---------------------
+
+	<title>MyBusApp Page Prototype</title>
+</head>
+
+<!-- Loads main page -->
+<body onload="main()">
+<!--
+	Div - Page
+-->
+<div data-role="page" id="pageTemplate"> <!--Page displayed by browser-->
+
+	<div data-role="header">
+		<a href="#myPanel" class="ui-btn ui-btn-inline ui-corner-all ui-shadow">Open Panel</a>	
+		<h1>Header Text</h1>
+		<a href="index.html" data-icon="gear" class="ui-btn-right">Options</a>		
+		<div data-role="navbar">
+		</div><!-- /navbar -->
+	</div><!-- /header -->
+	  
+	<div data-role="main" class="ui-content"> <!--Defines content of page, class adds extra padding and margin-->
+		<p>I'm text in the body</p>
+		<div id="nextPage" data-role="controlgroup" data-type="vertical">
+			<a href="#somePage" data-transition="slide" class="ui-btn">Button</a>
+		</div>
+	</div>
+	  
+	<div data-role="footer"> <!--Makes a toolbar at bottom of page-->
+		<h1>Footer Text</h1>
+	</div>
+
+	<div data-role="panel" id="myPanel"> 
+		<h2>Panel Header</h2>
+		<p>Close the panel by pressing the Esc key, by swiping to the left or clicking outside of the panel.</p>
+		<div id="nextPage" data-role="controlgroup" data-type="vertical">
+			<a href="#somePage" data-transition="slide" class="ui-btn">Button</a>
+		</div>
+	</div> 
+	
+</div> 
+	
+	
+	
