@@ -110,11 +110,11 @@ onPageLoad = function(){
 /*
 	PAGE 2
 */
-	// FIX THIS: Code doesn't make second page, just appends to previous.
+	// Add content to second page
 	var secondPage = new StubPage("secondPage");
-	home.addContent("header","<h1>Header Text</h1>",true);
-	home.addContent("body","<p>Page under construction</p>",true);
-	home.addContent("footer","<h1>Footer</h1>",true);
+	secondPage.addContent("header","<h1>Header Text</h1>",true);
+	secondPage.addContent("body","<p>Page under construction</p>",true);
+	secondPage.addContent("footer","<h1>Footer</h1>",true);
 	
 	// load "loading" page
 	$.mobile.initializePage();
@@ -122,6 +122,7 @@ onPageLoad = function(){
 	// load "home" page
 	// Neat trick: comment out the line below to see the loading page
 	home.loadPage();
+	secondPage.loadPage();
 	
 }
 
