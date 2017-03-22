@@ -41,7 +41,7 @@ function Stack() {
 	}	
 	
 	// returns height of stack
-	this.length = function)() {
+	this.length = function() {
 		return stack.length;
 	}
 }
