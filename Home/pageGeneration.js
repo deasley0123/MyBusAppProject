@@ -10,7 +10,7 @@
 //		type is a string ()
 generateContent = function(page, type) {
 
-	if(type == "homePage") {
+	if(type == "HomePage") {
 		generateHomeContent(page);
 	}
 	else if(type == "whatever")

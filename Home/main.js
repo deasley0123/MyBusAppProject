@@ -10,19 +10,21 @@
 // state variables
 //
 
-var pageHistory = []; // page stack - maybe encapsulate this in an object
+var pageHistory = new Stack(); // page history - current page at top
 
 
 //
 // main thread
 //
 
+// moved to outside function for use with panel
+var menuPageIDs = ["HomePage", "RoutesPage", "MapPage", "SettingsPage"]; // array of menu page IDs -- In the future this list can be retrieved from config.txt
+
 onPageLoad = function() {
 	
 	// load "loading" page
 	$.mobile.initializePage();
 	
-	var menuPageIDs = ["homePage", "routesPage", "mapPage", "settingsPage"]; // array of menu page IDs -- In the future this list can be retrieved from config.txt
 	var menuPages = [];														 // array of the menu pages
 	
 	// generate all menu pages
@@ -33,7 +35,7 @@ onPageLoad = function() {
 	
 	
 	// add to queue
-	
+	pageHistory.push(menuPageIDs[0]);
 	
 
 
@@ -62,11 +64,20 @@ $panel.append('<h2>Menu</h2>');
 $panel.append('<p>Close the panel by pressing the ESC key, by swiping to the left or clicking outside of the panel.</p>');
 $panel.append('<div id="nextPage" data-role="controlgroup" data-type="vertical">');
 
-//	buttons:
-$panel.append('<a href="#homePage" data-transition="slide" class="ui-btn">Home<a></div>');
-$panel.append('<a href="#routesPage" data-transition="slide" class="ui-btn">Routes<a></div>');
-$panel.append('<a href="#mapPage" data-transition="slide" class="ui-btn">Map<a></div>');
-$panel.append('<a href="#settingsPage" data-transition="slide" class="ui-btn">Settings<a></div>');
+//
+//	panel buttons:
+//
+
+updateHistory = function() {
+
+	alert("works");
+}
+
+for(i = 0; i < menuPageIDs.length; i++){
+	var $button = $('<a href="#' + menuPageIDs[i] + '" data-transition="slide" class="ui-btn">' + menuPageIDs[i].slice(0, -4) + '<a></div>');
+	$button.click(updateHistory);
+	$panel.append($button);
+}
 
 $(document).one('pagebeforecreate', function () {
 	$.mobile.pageContainer.prepend($panel);
