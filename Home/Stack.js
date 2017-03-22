@@ -39,4 +39,9 @@ function Stack() {
 			throw "Empty Stack";
 		}
 	}	
+	
+	// returns height of stack
+	this.length = function)() {
+		return stack.length;
+	}
 }

@@ -32,14 +32,3 @@ generateHomeContent = function(page) {
 	page.addContent("footer","<h1>An app developed by David Easley, Ryan Rodriguez, Josh Wu and Chen Long</h1>");
 }
 
-/****Tried some adding buttons to the panel on the fly, but it didn't work
-// pre: pageID refers to a generated page
-//		text is a string
-//post: generate button in panel that navigates to given page
-//		text is displayed on button
-addPageToPanel = function(pageID, text) {
-
-	//$panel.append('<a href="#' + pageID + '" data-transition="slide" class="ui-btn">' + text + '<a></div>');
-	//$( "#nextPage" ).listview("refresh")
-}
-*/

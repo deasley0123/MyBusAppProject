@@ -25,7 +25,7 @@ onPageLoad = function() {
 	// load "loading" page
 	$.mobile.initializePage();
 	
-	var menuPages = [];														 // array of the menu pages
+	var menuPages = [];				 // array of the menu pages
 	
 	// generate all menu pages
 	for(i = menuPageIDs.length -1; i >= 0; i--){
@@ -65,17 +65,20 @@ $panel.append('<p>Close the panel by pressing the ESC key, by swiping to the lef
 $panel.append('<div id="nextPage" data-role="controlgroup" data-type="vertical">');
 
 //
-//	panel buttons:
+//	panel buttons
 //
 
-updateHistory = function() {
-
-	alert("works");
+// Each button should add to history
+updateHistory = function(pageName) {
+	return function() {
+		pageHistory.push(pageName);
+	};
 }
 
+// set up each button from config
 for(i = 0; i < menuPageIDs.length; i++){
 	var $button = $('<a href="#' + menuPageIDs[i] + '" data-transition="slide" class="ui-btn">' + menuPageIDs[i].slice(0, -4) + '<a></div>');
-	$button.click(updateHistory);
+	$button.click( updateHistory(menuPageIDs[i]) );
 	$panel.append($button);
 }
 
