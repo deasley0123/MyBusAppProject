@@ -68,10 +68,38 @@ $panel.append('<div id="nextPage" data-role="controlgroup" data-type="vertical">
 //	panel buttons
 //
 
-// Each button should add to history
+// updates history/controls back buttons
+// each back button is named "BackButton1", "BackButton2", etc.
 updateHistory = function(pageName) {
 	return function() {
-		pageHistory.push(pageName);
+		// do nothing if not directing to a new page
+		if( pageHistory.peek() != pageName ) {
+		
+			// hide previous back button if it exists
+			// in others words, only if a third page has been navigated to
+			if(pageHistory.length() > 2) {
+				$( "#BackButton" + pageHistory.length() ).hide(); 
+			}
+			
+			// index of new back button (starts at 2)
+			var newLength = pageHistory.length()+1; // avoiding type coercion
+			
+			// create new back button
+			$backButton = $('<a href="#' + pageHistory.peek() + '" id="BackButton' + newLength + '" data-icon="back" class="ui-btn-right ui-link ui-btn ui-icon-back ui-btn-icon-left ui-shadow ui-corner-all" data-role="button" role="button">Back</a>');
+			$backButton.click( function() {
+			
+				// remove current page
+				pageHistory.pop();
+				$( "#BackButton" + newLength ).remove(); 
+				
+				// show previous page's back button
+				if(pageHistory.length() > 1) {
+					$( "#BackButton"  + pageHistory.length() ).show(); 
+				}				
+			});
+			$("#" + pageName + "Header").append($backButton);
+			pageHistory.push(pageName);
+		}
 	};
 }
 
