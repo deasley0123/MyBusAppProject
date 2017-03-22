@@ -1,3 +1,7 @@
-#pageTemplate {
+.welcome {
+	text-align: center;
+}
+
+.disclaimer {
 	text-align: center;
 }
