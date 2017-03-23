@@ -41,25 +41,35 @@ generateMapContent = function(page) {
 	page.addContent("header","<h1>MyBus City Map</h1>");
 	page.addContent("header",'<div data-role="navbar"></div>');
 	page.addContent("body", '<div class="row"> <div class="span11"> <div id="map"> </div></div></div>');
-	var map;
-    map = new GMaps({
+
+	var map = new GMaps({
 		el: "#map",
 		lat: 38.955028,  
-        lng: -95.262750, 
-        zoomControl : true, 
-        zoomControlOpt: { 
+		lng: -95.262750, 
+		zoomControl : true, 
+		zoomControlOpt: { 
 			style : "SMALL", 
-            position: "TOP_LEFT"
-        },
-        panControl : false,
-        streetViewControl : false,
-        mapTypeControl: false,
-        overviewMapControl: false,
+			position: "TOP_LEFT"
+		},
+		panControl : false,
+		streetViewControl : false,
+		mapTypeControl: false,
+		overviewMapControl: false,
 		width: "95%",
 		height: "350px"
+	});
+	
+	// refreshes map on page transition
+	$(document).on( "pageshow", function() {
+		map.refresh(); 
+	});
 
-    });
 
 	
-	
+}
+
+function delay(t) {
+   return new Promise(function(resolve) { 
+       setTimeout(resolve, t)
+   });
 }
