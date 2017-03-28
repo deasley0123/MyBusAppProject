@@ -21,22 +21,22 @@ var pageHistory = new Stack(); // page history - current page at top
 var menuPageIDs = ["HomePage", "RoutesPage", "MapPage", "SettingsPage"]; // array of menu page IDs -- In the future this list can be retrieved from config.txt
 
 onPageLoad = function() {
-	
+
 	// load "loading" page
 	$.mobile.initializePage();
-	
+
 	var menuPages = [];				 // array of the menu pages
-	
+
 	// generate all menu pages
 	for(i = menuPageIDs.length -1; i >= 0; i--){
 		menuPages[i] = new MakePage(menuPageIDs[i]);
 		generateContent(menuPages[i], menuPageIDs[i]);
 	}
-	
-	
+	//menuPages[0].changePage();
+
 	// add to queue
 	pageHistory.push(menuPageIDs[0]);
-	
+
 
 
 }
@@ -51,7 +51,7 @@ onMobileInit = function() {
     $.mobile.autoInitialize = false;
 }
 
-// load a dynamically created page 
+// load a dynamically created page
 $(document).on("mobileinit", onMobileInit);
 $(document).ready(onPageLoad);
 
@@ -74,28 +74,28 @@ updateHistory = function(pageName) {
 	return function() {
 		// do nothing if not directing to a new page
 		if( pageHistory.peek() != pageName ) {
-		
+
 			// hide previous back button if it exists
 			// in others words, only if a third page has been navigated to
 			if(pageHistory.length() > 2) {
-				$( "#BackButton" + pageHistory.length() ).hide(); 
+				$( "#BackButton" + pageHistory.length() ).hide();
 			}
-			
+
 			// index of new back button (starts at 2)
 			var newLength = pageHistory.length()+1; // avoiding type coercion
-			
+
 			// create new back button
 			$backButton = $('<a href="#' + pageHistory.peek() + '" id="BackButton' + newLength + '" data-icon="back" class="ui-btn-right ui-link ui-btn ui-icon-back ui-btn-icon-left ui-shadow ui-corner-all" data-role="button" role="button">Back</a>');
 			$backButton.click( function() {
-			
+
 				// remove current page
 				pageHistory.pop();
-				$( "#BackButton" + newLength ).remove(); 
-				
+				$( "#BackButton" + newLength ).remove();
+
 				// show previous page's back button
 				if(pageHistory.length() > 1) {
-					$( "#BackButton"  + pageHistory.length() ).show(); 
-				}				
+					$( "#BackButton"  + pageHistory.length() ).show();
+				}
 			});
 			$("#" + pageName + "Header").append($backButton);
 			pageHistory.push(pageName);
@@ -113,5 +113,5 @@ for(i = 0; i < menuPageIDs.length; i++){
 $(document).one('pagebeforecreate', function () {
 	$.mobile.pageContainer.prepend($panel);
 	// Enhances all children of all elements in the set of matched elements.
-	$panel.panel().enhanceWithin(); 
+	$panel.panel().enhanceWithin();
 });

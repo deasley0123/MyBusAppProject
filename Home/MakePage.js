@@ -14,15 +14,15 @@ function MakePage(pageID = "pageTemplate") {
 	//
 	// page
 	//
-	this.$page = $('<div data-role="page"></div>'); 
+	this.$page = $('<div data-role="page"></div>');
 	this.pageName = function() { return pageID; }; // forcing private functionality
 	this.$page.attr('id',pageID);
 
 	//
 	// template/initialized
-	// page sections 
+	// page sections
 	//
-	
+
 	// header
 	this.headerID = function() { return pageID + "Header"; };
 	var $header = $('<div data-role="header" id="' + this.headerID() + '"></div>');
@@ -41,7 +41,7 @@ function MakePage(pageID = "pageTemplate") {
 	//
 	this.$page.append($header);
 	this.$page.append($body);
-	this.$page.append($footer);	
+	this.$page.append($footer);
 
 }
 
@@ -50,36 +50,39 @@ function MakePage(pageID = "pageTemplate") {
 //	post: appends content to the given section
 //
 MakePage.prototype.addContent = function(section, htmlString){
-	
+
 	//
 	// page sections
 	//
-	
+
 	// header
 	if(section == "header")
 	{
 		var header = "#" + this.headerID();
 		$(header).append(htmlString);
 	}
-	
+
 	// body
 	if(section == "body")
 	{
 		var body = "#" + this.bodyID();
 		$(body).append(htmlString);
 	}
-	
+
 	// footer
 	if(section == "footer")
 	{
 		var footer = "#" + this.footerID();
 		$(footer).append(htmlString);
 	}
-	
+
 }
 
 
-MakePage.prototype.loadPage = function () {	
+MakePage.prototype.loadPage = function () {
 	$.mobile.pageContainer.prepend(this.$page); // loads the page to DOM
+}
+
+MakePage.prototype.changePage = function() {
 	$(':mobile-pagecontainer').pagecontainer("change", "#" + this.pageName(), { transition:"slide" }); //switches to page
 }
