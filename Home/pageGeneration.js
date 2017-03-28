@@ -77,9 +77,15 @@ generateSettingsContent = function(page) {
 	page.loadPage();
 
 	page.addContent("header","<h1>Settings</h1>");
-	page.addContent("body", '<p>Setting1: </p>');
-	page.addContent("body", '<p>Setting1: </p>');
-	page.addContent("body", '<p>Setting1: </p>');
+	// manage which page loads first on startup
+	page.addContent("body", '<a class="ui-btn">Starting Page</a>');
+	// manage favorites
+	page.addContent("body", '<a class="ui-btn">Favorites</a>');
+	// manage where the map centers at startup
+	page.addContent("body", '<a class="ui-btn">Starting Map Location</a>');
+	// manage font size
+	page.addContent("body", '<a class="ui-btn">Font Size</a>');
+
 
 	page.addContent("footer","<h1>An app developed by David Easley, Ryan Rodriguez, Josh Wu and Chen Long</h1>");
 
