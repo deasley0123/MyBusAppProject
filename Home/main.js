@@ -62,7 +62,7 @@ $(document).ready(onPageLoad);
 var $panel = $('<div data-role="panel" id="myPanel" data-position="left" data-display="reveal" data-theme="a"></div>');
 $panel.append('<h2>Menu</h2>');
 $panel.append('<p>Close the panel by pressing the ESC key, by swiping to the left or clicking outside of the panel.</p>');
-$panel.append('<div id="nextPage" data-role="controlgroup" data-type="vertical">');
+//$panel.append('<div id="nextPage" data-role="controlgroup" data-type="vertical">');
 
 //
 //	panel buttons
@@ -109,7 +109,8 @@ for(i = 0; i < menuPageIDs.length; i++){
 	$button.click( updateHistory(menuPageIDs[i]) );
 	$panel.append($button);
 }
-$panel.append('<\div>');
+
+	//$panel.append($favorites);
 
 $(document).one('pagebeforecreate', function () {
 	$.mobile.pageContainer.prepend($panel);
