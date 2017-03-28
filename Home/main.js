@@ -105,7 +105,7 @@ updateHistory = function(pageName) {
 
 // set up each button from config
 for(i = 0; i < menuPageIDs.length; i++){
-	var $button = $('<a href="#' + menuPageIDs[i] + '" data-transition="slide" class="ui-btn">' + menuPageIDs[i].slice(0, -4) + '<a></div>');
+	var $button = $('<a href="#' + menuPageIDs[i] + '" data-transition="slide" class="ui-btn">' + menuPageIDs[i].slice(0, -4) + '</a>');
 	$button.click( updateHistory(menuPageIDs[i]) );
 	$panel.append($button);
 }

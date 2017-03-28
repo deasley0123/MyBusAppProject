@@ -17,7 +17,7 @@ generateContent = function(page, type) {
 		generateMapContent(page);
 	}
 	else if("SettingsPage" == type) {
-		
+		generateSettingsContent(page);
 	}
 	page.loadPage();
 }
@@ -67,5 +67,20 @@ generateMapContent = function(page) {
 	});
 
 
+
+}
+
+
+// pre: page is a MakePage object
+generateSettingsContent = function(page) {
+
+	page.loadPage();
+
+	page.addContent("header","<h1>Settings</h1>");
+	page.addContent("body", '<p>Setting1: </p>');
+	page.addContent("body", '<p>Setting1: </p>');
+	page.addContent("body", '<p>Setting1: </p>');
+
+	page.addContent("footer","<h1>An app developed by David Easley, Ryan Rodriguez, Josh Wu and Chen Long</h1>");
 
 }
