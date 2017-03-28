@@ -30,7 +30,7 @@ function MakePage(pageID = "pageTemplate") {
 
 	// body
 	this.bodyID = function() { return pageID + "Body"; };
-	var $body = $('<div data-role="main" class="ui-content" id="' + this.bodyID() + '"></div>');
+	var $body = $('<div data-role="main" style="height:500px" class="ui-content" id="' + this.bodyID() + '"></div>');
 
 	// footer
 	this.footerID = function() { return pageID + "Footer"; };

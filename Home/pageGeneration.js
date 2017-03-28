@@ -24,7 +24,7 @@ generateContent = function(page, type) {
 generateHomeContent = function(page) {
 
 	page.loadPage();
-	
+
 	page.addContent("header","<h1>MyBus Home Page</h1>");
 	page.addContent("header",'<div data-role="navbar"></div>');
 	page.addContent("body",'<p class="welcome">Welcome to MyBus</p>');
@@ -35,20 +35,20 @@ generateHomeContent = function(page) {
 
 
 generateMapContent = function(page) {
-	
+
 	page.loadPage();
-	
+
 	page.addContent("header","<h1>MyBus City Map</h1>");
 	page.addContent("header",'<div data-role="navbar"></div>');
-	page.addContent("body", '<div class="row"> <div class="span11"> <div id="map"> </div></div></div>');
+	page.addContent("body", '<div id="map"></div>');
 
 	var map = new GMaps({
 		el: "#map",
-		lat: 38.955028,  
-		lng: -95.262750, 
-		zoomControl : true, 
-		zoomControlOpt: { 
-			style : "SMALL", 
+		lat: 38.955028,
+		lng: -95.262750,
+		zoomControl : true,
+		zoomControlOpt: {
+			style : "SMALL",
 			position: "TOP_LEFT"
 		},
 		panControl : false,
@@ -56,16 +56,14 @@ generateMapContent = function(page) {
 		mapTypeControl: false,
 		overviewMapControl: false,
 		width: "95%",
-		height: "350px"
+		height: "95%"
 	});
-	
+
 	// refreshes map on page transition
 	$(document).on( "pageshow", function() {
-		map.refresh(); 
+		map.refresh();
 	});
 
 
-	
+
 }
-
-
