@@ -13,9 +13,11 @@ generateContent = function(page, type) {
 	if("HomePage" == type) {
 		generateHomeContent(page);
 	}
-	else if("MapPage" == type)
-	{
+	else if("MapPage" == type) {
 		generateMapContent(page);
+	}
+	else if("SettingsPage" == type) {
+		
 	}
 	page.loadPage();
 }

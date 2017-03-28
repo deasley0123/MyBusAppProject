@@ -109,6 +109,7 @@ for(i = 0; i < menuPageIDs.length; i++){
 	$button.click( updateHistory(menuPageIDs[i]) );
 	$panel.append($button);
 }
+$panel.append('<\div>');
 
 $(document).one('pagebeforecreate', function () {
 	$.mobile.pageContainer.prepend($panel);
