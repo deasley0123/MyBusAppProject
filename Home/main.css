@@ -1,5 +1,18 @@
+/*controls global text size*/
+.txtwrapper{
+    font-size: 100%;
+}
+
 .welcome {
 	text-align: center;
+}
+/*overrides jquery mobile presets*/
+.ui-btn{
+	font-size: 100%;
+}
+
+.ui-header  .ui-btn{
+	font-size: 78.125%;
 }
 
 .disclaimer {
@@ -17,8 +30,6 @@
   -webkit-box-shadow: 0px 5px 20px #ccc;
   box-shadow: 0px 5px 20px #ccc;
 }
-
-
 
 .overlay{
   display:block;

@@ -148,7 +148,33 @@ generateSettingsContentFontSize = function(page) {
 	// manage font size
 	//
 	$fontSizeButton = $('<a href="#popupFontSize"" class="ui-btn" data-rel="popup">Font Size</a>');
-	$fontSizePopup = $('<div data-role="popup" id="popupFontSize"><p>This is a completely basic popup, no options set.</p></div>');
+	$fontSizePopup = $('<div data-role="popup" id="popupFontSize"></div>');
+	
+	// adds a close button
+	$fontSizePopup.append('<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>');
+	$fontSizeList = $('<ul data-role="listview" data-inset="true" style="min-width:210px;"data-theme="b"></ul>');
+	$fontSizeList.append('<li data-role="divider" data-theme="a">Font Size</li>');
+	//sets font size in terms of percent
+	var sizes = [["Small", 80], ["Medium", 100], ["Large", 120]];
+	for(var j = 0; j < sizes.length; j++) {
+		var $button = $('<li><a class="ui-btn">' + sizes[j][0] + '</a></li>');
+		
+		var sizeOfFont = sizes[j][1];
+		var setFontSize = function (size) {
+			return function() {
+				// set font size
+				$(".txtwrapper").css('font-size', size+'%');
+				
+				// close popup
+				$fontSizePopup.popup( "close" );
+			}
+		}
+		$button.click( setFontSize(sizeOfFont) );
+
+		$fontSizeList.append($button);
+	}
+	$fontSizePopup.append($fontSizeList);
+	
 	
 	page.addContent("body", $fontSizePopup);
 	page.addContent("body", $fontSizeButton);
