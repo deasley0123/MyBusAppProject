@@ -77,14 +77,34 @@ generateSettingsContent = function(page) {
 	page.loadPage();
 
 	page.addContent("header","<h1>Settings</h1>");
+	
 	// manage which page loads first on startup
-	page.addContent("body", '<a class="ui-btn">Starting Page</a>');
+	$startupButton = $('<a href="#popupStartup"" class="ui-btn" data-rel="popup">Start Up</a>');
+	$startupPopup = $('<div data-role="popup" id="popupStartup"><p>This is a completely basic popup, no options set.</p></div>');
+	
+	page.addContent("body", $startupPopup);
+	page.addContent("body", $startupButton);
+
 	// manage favorites
-	page.addContent("body", '<a class="ui-btn">Favorites</a>');
+	$favoritesButton = $('<a href="#popupFavorites"" class="ui-btn" data-rel="popup">Favorites</a>');
+	$favoritesPopup = $('<div data-role="popup" id="popupFavorites"><p>This is a completely basic popup, no options set.</p></div>');
+	
+	page.addContent("body", $favoritesPopup);
+	page.addContent("body", $favoritesButton);
+	
 	// manage where the map centers at startup
-	page.addContent("body", '<a class="ui-btn">Starting Map Location</a>');
+	$mapStartButton = $('<a href="#popupMapStart"" class="ui-btn" data-rel="popup">Starting Map Location</a>');
+	$mapStartPopup = $('<div data-role="popup" id="popupMapStart"><p>This is a completely basic popup, no options set.</p></div>');
+	
+	page.addContent("body", $mapStartPopup);
+	page.addContent("body", $mapStartButton);
+	
 	// manage font size
-	page.addContent("body", '<a class="ui-btn">Font Size</a>');
+	$fontSizeButton = $('<a href="#popupFontSize"" class="ui-btn" data-rel="popup">Font Size</a>');
+	$fontSizePopup = $('<div data-role="popup" id="popupFontSize"><p>This is a completely basic popup, no options set.</p></div>');
+	
+	page.addContent("body", $fontSizePopup);
+	page.addContent("body", $fontSizeButton);
 
 
 	page.addContent("footer","<h1>An app developed by David Easley, Ryan Rodriguez, Josh Wu and Chen Long</h1>");

@@ -83,6 +83,6 @@ MakePage.prototype.loadPage = function () {
 	$.mobile.pageContainer.prepend(this.$page); // loads the page to DOM
 }
 
-MakePage.prototype.changePage = function() {
+MakePage.prototype.switchToPage = function() {
 	$(':mobile-pagecontainer').pagecontainer("change", "#" + this.pageName(), { transition:"slide" }); //switches to page
 }
