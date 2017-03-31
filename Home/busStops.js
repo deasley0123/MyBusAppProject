@@ -1,4 +1,4 @@
-[ 
+busStops = [ 
 {"stop_id" : "10TH_VERMONT_NB", "stop_code" : "145", "stop_name" : "10th & Vermont", "stop_lat" : "38.96552015", "stop_lon" : "-95.23700272"},
 {"stop_id" : "11TH_ALABAMA_EB", "stop_code" : "360", "stop_name" : "Fambrough & Alabama", "stop_lat" : "38.964214", "stop_lon" : "-95.24638116"},
 {"stop_id" : "11TH_CONN_EB", "stop_code" : "125", "stop_name" : "11th & Connecticut", "stop_lat" : "38.96372452", "stop_lon" : "-95.2325584"},
@@ -349,4 +349,4 @@
 {"stop_id" : "15TH_CONN_SB", "stop_code" : "129", "stop_name" : "15th & Connecticut", "stop_lat" : "38.95714", "stop_lon" : "-95.232943"},
 {"stop_id" : "19TH_DELA_EB", "stop_code" : "96", "stop_name" : "19th & Delaware", "stop_lat" : "38.949898", "stop_lon" : "-95.228577"},
 {"stop_id" : "19TH_HASK_EB2", "stop_code" : "", "stop_name" : "19th & Haskell", "stop_lat" : "38.949864", "stop_lon" : "-95.223663"}
-]
+];
