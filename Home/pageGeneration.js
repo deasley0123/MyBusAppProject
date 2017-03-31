@@ -78,35 +78,78 @@ generateSettingsContent = function(page) {
 
 	page.addContent("header","<h1>Settings</h1>");
 	
+	generateSettingsContentStartup(page);
+	generateSettingsContentFavorites(page);
+	generateSettingsContentMapStart(page);
+	generateSettingsContentFontSize(page);
+
+	page.addContent("footer","<h1>An app developed by David Easley, Ryan Rodriguez, Josh Wu and Chen Long</h1>");
+
+}
+
+generateSettingsContentStartup = function(page) {
+	//
 	// manage which page loads first on startup
-	$startupButton = $('<a href="#popupStartup"" class="ui-btn" data-rel="popup">Start Up</a>');
-	$startupPopup = $('<div data-role="popup" id="popupStartup"><p>This is a completely basic popup, no options set.</p></div>');
+	//
+	
+	$startupButton = $('<a href="#popupStartup"" class="ui-btn" data-rel="popup">Start Page</a>');
+	$startupPopup = $('<div data-role="popup" id="popupStartup" data-theme="a"></div>');
+	// adds a close button to the popup
+	$startupPopup.append('<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>');
+	$startupList = $('<ul data-role="listview" data-inset="true" style="min-width:210px;"data-theme="b"></ul>');
+	$startupList.append('<li data-role="divider" data-theme="a">Pages</li>');
+	for(var i = 0; i < menuPageIDs.length; i++) {
+		var $button = $('<li><a class="ui-btn">' + menuPageIDs[i].slice(0, -4) + '</a></li>');
+		
+		$button.click( function() {
+			// set starting page
+			
+			//
+			// insert code here
+			//
+			
+			// close popup
+			$startupPopup.popup( "close" );
+			
+		});
+
+		$startupList.append($button);
+	}
+	$startupPopup.append($startupList);
 	
 	page.addContent("body", $startupPopup);
 	page.addContent("body", $startupButton);
+}
 
+generateSettingsContentFavorites = function(page) {
+	//
 	// manage favorites
+	//
 	$favoritesButton = $('<a href="#popupFavorites"" class="ui-btn" data-rel="popup">Favorites</a>');
 	$favoritesPopup = $('<div data-role="popup" id="popupFavorites"><p>This is a completely basic popup, no options set.</p></div>');
 	
 	page.addContent("body", $favoritesPopup);
 	page.addContent("body", $favoritesButton);
-	
+}
+
+generateSettingsContentMapStart = function(page) {
+	//
 	// manage where the map centers at startup
+	//
 	$mapStartButton = $('<a href="#popupMapStart"" class="ui-btn" data-rel="popup">Starting Map Location</a>');
 	$mapStartPopup = $('<div data-role="popup" id="popupMapStart"><p>This is a completely basic popup, no options set.</p></div>');
 	
 	page.addContent("body", $mapStartPopup);
 	page.addContent("body", $mapStartButton);
-	
+}
+
+generateSettingsContentFontSize = function(page) {
+	//
 	// manage font size
+	//
 	$fontSizeButton = $('<a href="#popupFontSize"" class="ui-btn" data-rel="popup">Font Size</a>');
 	$fontSizePopup = $('<div data-role="popup" id="popupFontSize"><p>This is a completely basic popup, no options set.</p></div>');
 	
 	page.addContent("body", $fontSizePopup);
 	page.addContent("body", $fontSizeButton);
-
-
-	page.addContent("footer","<h1>An app developed by David Easley, Ryan Rodriguez, Josh Wu and Chen Long</h1>");
-
 }
