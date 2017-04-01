@@ -11,11 +11,11 @@
 //
 function Settings() {
 	
-	var startPage = "HomePage";
+	var startPage = 0;
 	var fontSize = 100;
 	
-	if (storageAvailable('localStorage') && !localStorage.getItem('startPage')) {
-		startPage = localStorage.getItem('startPage');
+	if (storageAvailable('localStorage')) {
+		startPage = parseInt(localStorage.getItem('startPage'), 10);
 		fontSize = localStorage.getItem('fontSize');
 	}
 	

@@ -94,17 +94,17 @@ generateSettingsContentStartup = function(page) {
 	for(var i = 0; i < menuPageIDs.length; i++) {
 		var $button = $('<li><a class="ui-btn">' + menuPageIDs[i].slice(0, -4) + '</a></li>');
 		
-		$button.click( function() {
-			// set starting page
-			
-			//
-			// insert code here
-			//
-			
-			// close popup
-			$startupPopup.popup( "close" );
-			
-		});
+		var setPage = function(page) {
+			return function() {
+				// set starting page
+				currentSettings.setStartPage(page);
+				
+				// close popup
+				$startupPopup.popup( "close" );
+			};
+		}
+		
+		$button.click( setPage(i) );
 
 		$startupList.append($button);
 	}
@@ -147,6 +147,7 @@ generateSettingsContentFontSize = function(page) {
 	$fontSizePopup.append('<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>');
 	$fontSizeList = $('<ul data-role="listview" data-inset="true" style="min-width:210px;"data-theme="b"></ul>');
 	$fontSizeList.append('<li data-role="divider" data-theme="a">Font Size</li>');
+	
 	//sets font size in terms of percent
 	var sizes = [["Small", 80], ["Medium", 100], ["Large", 120]];
 	for(var j = 0; j < sizes.length; j++) {

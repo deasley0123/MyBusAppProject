@@ -27,24 +27,20 @@ onPageLoad = function() {
 
 	// load "loading" page
 	$.mobile.initializePage();
-	
+		
 	// generate all menu pages
-	for(i = menuPageIDs.length -1; i >= 0; i--){
+	for(var i = menuPageIDs.length -1; i >= 0; i--){
 		menuPages[i] = new MakePage(menuPageIDs[i]);
 		menuPages[i].loadPage();
 		generateContent(menuPages[i], menuPageIDs[i]);
-	}
-		
-	for(i = menuPageIDs.length -1; i >= 0; i--){
 		menuPages[i].loadPage();
 	}
-
+	
 	// add to queue
-	pageHistory.push(menuPageIDs[0]);
+	pageHistory.push(menuPageIDs[currentSettings.getStartPage()]);
 
 	// check settings
 	currentSettings.updateFontSize();
-	menuPages[0].switchToPage();
 	
 
 
@@ -113,11 +109,21 @@ updateHistory = function(pageName) {
 }
 
 // set up each button from config
-for(i = 0; i < menuPageIDs.length; i++){
+for(var i = 0; i < menuPageIDs.length; i++){
 	var $button = $('<a href="#' + menuPageIDs[i] + '" data-transition="slide" class="ui-btn">' + menuPageIDs[i].slice(0, -4) + '</a>');
 	$button.click( updateHistory(menuPageIDs[i]) );
 	$panel.append($button);
 }
+
+// controls which page displays first
+var numPageShows = 0;
+var startPageID = menuPageIDs[currentSettings.getStartPage()];
+$(document).on("pagebeforeshow ",function(event){
+	numPageShows++;
+	if(numPageShows == 2) {
+		$(':mobile-pagecontainer').pagecontainer("change", "#"+startPageID, { }); //switches to page
+	}
+});
 
 	//$panel.append($favorites);
 
@@ -126,3 +132,5 @@ $(document).one('pagebeforecreate', function () {
 	// Enhances all children of all elements in the set of matched elements.
 	$panel.panel().enhanceWithin();
 });
+
+
