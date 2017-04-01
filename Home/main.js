@@ -22,21 +22,30 @@ var menuPageIDs = ["HomePage", "RoutesPage", "MapPage", "SettingsPage"]; // arra
 
 onPageLoad = function() {
 
-	// load "loading" page
-	$.mobile.initializePage();
 
 	var menuPages = [];				 // array of the menu pages
 
+	// load "loading" page
+	$.mobile.initializePage();
+	
 	// generate all menu pages
 	for(i = menuPageIDs.length -1; i >= 0; i--){
 		menuPages[i] = new MakePage(menuPageIDs[i]);
+		menuPages[i].loadPage();
 		generateContent(menuPages[i], menuPageIDs[i]);
 	}
-	//menuPages[0].changePage();
+		
+	for(i = menuPageIDs.length -1; i >= 0; i--){
+		menuPages[i].loadPage();
+	}
 
 	// add to queue
 	pageHistory.push(menuPageIDs[0]);
 
+	// check settings
+	currentSettings.updateFontSize();
+	menuPages[0].switchToPage();
+	
 
 
 }

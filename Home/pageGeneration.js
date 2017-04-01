@@ -19,13 +19,10 @@ generateContent = function(page, type) {
 	else if("SettingsPage" == type) {
 		generateSettingsContent(page);
 	}
-	page.loadPage();
 }
 
 // pre: page is a MakePage object
 generateHomeContent = function(page) {
-
-	page.loadPage();
 
 	page.addContent("header","<h1>MyBus Home Page</h1>");
 	page.addContent("header",'<div data-role="navbar"></div>');
@@ -37,8 +34,6 @@ generateHomeContent = function(page) {
 
 
 generateMapContent = function(page) {
-
-	page.loadPage();
 
 	page.addContent("header","<h1>MyBus City Map</h1>");
 	page.addContent("header",'<div data-role="navbar"></div>');
@@ -73,8 +68,6 @@ generateMapContent = function(page) {
 
 // pre: page is a MakePage object
 generateSettingsContent = function(page) {
-
-	page.loadPage();
 
 	page.addContent("header","<h1>Settings</h1>");
 	
@@ -163,7 +156,7 @@ generateSettingsContentFontSize = function(page) {
 		var setFontSize = function (size) {
 			return function() {
 				// set font size
-				$(".txtwrapper").css('font-size', size+'%');
+				currentSettings.setFontSize(size);
 				
 				// close popup
 				$fontSizePopup.popup( "close" );
