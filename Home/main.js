@@ -27,7 +27,7 @@ onPageLoad = function() {
 
 	// load "loading" page
 	$.mobile.initializePage();
-		
+
 	// generate all menu pages
 	for(var i = menuPageIDs.length -1; i >= 0; i--){
 		menuPages[i] = new MakePage(menuPageIDs[i]);
@@ -35,13 +35,13 @@ onPageLoad = function() {
 		generateContent(menuPages[i], menuPageIDs[i]);
 		menuPages[i].loadPage();
 	}
-	
+
 	// add to queue
 	pageHistory.push(menuPageIDs[currentSettings.getStartPage()]);
 
 	// check settings
 	currentSettings.updateFontSize();
-	
+
 
 
 }
@@ -126,11 +126,10 @@ $(document).on("pagebeforeshow ",function(event){
 });
 
 	//$panel.append($favorites);
-
+var $favorites = $('<a id = "Fav" class="ui-btn">Favorites</a>');
+$panel.append($favorites);
 $(document).one('pagebeforecreate', function () {
 	$.mobile.pageContainer.prepend($panel);
 	// Enhances all children of all elements in the set of matched elements.
 	$panel.panel().enhanceWithin();
 });
-
-
