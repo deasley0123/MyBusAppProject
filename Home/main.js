@@ -127,7 +127,8 @@ $(document).on("pagebeforeshow ",function(event){
 });
 
 	//$panel.append($favorites);
-
+var $favorites = $('<a id = "Fav" class="ui-btn">Favorites</a>');
+$panel.append($favorites);
 $(document).one('pagebeforecreate', function () {
 	$.mobile.pageContainer.prepend($panel);
 	// Enhances all children of all elements in the set of matched elements.
