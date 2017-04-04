@@ -55,6 +55,20 @@ generateMapContent = function(page) {
 		width: "95%",
 		height: "95%"
 	});
+	
+	for(var i = 0; i < busStops.length; i++)
+	{
+		map.addMarker(
+		{
+			lat: busStops[i].stop_lat,
+			lng: busStops[i].stop_lon,
+			title: busStops[i].stop_name,
+			infoWindow: {
+				content: '<p>'+busStops[i].stop_name+'</p><p>Stop '+busStops[i].stop_code+
+				'</p>'+"<button onclick='myFunction()'>Click me</button>"
+			}
+		});
+	}
 
 	// refreshes map on page transition
 	$(document).on( "pageshow", function() {
