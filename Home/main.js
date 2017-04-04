@@ -27,7 +27,7 @@ onPageLoad = function() {
 
 	// load "loading" page
 	$.mobile.initializePage();
-		
+
 	// generate all menu pages
 	for(var i = menuPageIDs.length -1; i >= 0; i--){
 		menuPages[i] = new MakePage(menuPageIDs[i]);
@@ -35,13 +35,13 @@ onPageLoad = function() {
 		generateContent(menuPages[i], menuPageIDs[i]);
 		menuPages[i].loadPage();
 	}
-	
+
 	// add to queue
 	pageHistory.push(menuPageIDs[currentSettings.getStartPage()]);
 
 	// check settings
 	currentSettings.updateFontSize();
-	
+
 
 
 }
@@ -67,7 +67,7 @@ $(document).ready(onPageLoad);
 var $panel = $('<div data-role="panel" id="myPanel" data-position="left" data-display="reveal" data-theme="a"></div>');
 $panel.append('<h2>Menu</h2>');
 $panel.append('<p>Close the panel by pressing the ESC key, by swiping to the left or clicking outside of the panel.</p>');
-//$panel.append('<div id="nextPage" data-role="controlgroup" data-type="vertical">');
+$buttonPanelList = $('<ul data-role="listview" data-inset="true" style="min-width:210px;"data-theme="a"></ul>');
 
 //
 //	panel buttons
@@ -110,10 +110,11 @@ updateHistory = function(pageName) {
 
 // set up each button from config
 for(var i = 0; i < menuPageIDs.length; i++){
-	var $button = $('<a href="#' + menuPageIDs[i] + '" data-transition="slide" class="ui-btn">' + menuPageIDs[i].slice(0, -4) + '</a>');
+	var $button = $('<li><a href="#' + menuPageIDs[i] + '" data-transition="slide" class="ui-btn">' + menuPageIDs[i].slice(0, -4) + '</a></li>');
 	$button.click( updateHistory(menuPageIDs[i]) );
-	$panel.append($button);
+	$buttonPanelList.append($button);
 }
+$panel.append($buttonPanelList)
 
 // controls which page displays first
 var numPageShows = 0;
@@ -132,5 +133,3 @@ $(document).one('pagebeforecreate', function () {
 	// Enhances all children of all elements in the set of matched elements.
 	$panel.panel().enhanceWithin();
 });
-
-

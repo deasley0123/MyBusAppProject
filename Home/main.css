@@ -15,6 +15,11 @@
 	font-size: 78.125%;
 }
 
+.ui-content{
+    padding: 0;
+}​
+
+
 .disclaimer {
 	text-align: center;
 }
