@@ -27,7 +27,7 @@ generateHomeContent = function(page) {
 	page.addContent("header","<h1>MyBus Home Page</h1>");
 	page.addContent("header",'<div data-role="navbar"></div>');
 	page.addContent("body",'<p class="welcome">Welcome to MyBus</p>');
-	page.addContent("body",'<p class="disclaimer">*All times are approximate. Please arrive 5 minutes early.</p>');
+	page.addContent("body",'<p class="disclaimer" style="text-align:center">*All times are approximate. Please arrive 5 minutes early.</p>');
 	page.addContent("footer","<h1>An app developed by David Easley, Ryan Rodriguez, Josh Wu and Chen Long</h1>");
 
 }
