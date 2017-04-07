@@ -13,6 +13,9 @@ generateContent = function(page, type) {
 	if("HomePage" == type) {
 		generateHomeContent(page);
 	}
+	else if("RoutesPage" == type) {
+		generateRouteContent(page);
+	}
 	else if("MapPage" == type) {
 		generateMapContent(page);
 	}
@@ -30,6 +33,51 @@ generateHomeContent = function(page) {
 	page.addContent("body",'<p class="disclaimer" style="text-align:center">*All times are approximate. Please arrive 5 minutes early.</p>');
 	page.addContent("footer","<h1>An app developed by David Easley, Ryan Rodriguez, Josh Wu and Chen Long</h1>");
 
+}
+
+generateRouteContent = function(page) {
+	
+	// Header
+	page.addContent("header","<h1>Route Info</h1>");
+	page.addContent("header",'<div data-role="navbar"></div>');
+	
+	// Body Text
+	var routeName = "Fake Route Name";
+	page.addContent("body",'<h4 class="routesContent">' + routeName + '</h4>')
+	var stopName = "Fake Stop Name";
+	var stopNum = 99;
+	page.addContent("body",'<p class="routesContent">For Stop ' + stopNum + ': ' + stopName + '</p>');
+	var arrivalTime = "12:00pm";
+	page.addContent("body",'<p class="routesContent">Next Arrival at: ' + arrivalTime + '</p>');
+	
+	// Body Buttons
+	var $fatCollapsibleSet = $('<div class="ui-collapsible-set">');
+	var $fatCollapsible = $('<div data-role="collapsible"></div>');
+	var $returnToStopBtn = $('<a class="ui-btn">Return to Stop on Map</a>');
+
+	// modify buttons
+	$fatCollapsible.append("<H4>Show Future Arrival Times");
+	$fatList = $('<ul data-role="listview" data-inset="false" style="min-width:210px;" data-theme="a"></ul>');
+	
+	/*TEMP ARRAY*/	var times = ["12:20 pm","12:40 pm","1:00 pm","1:20 pm","1:40 pm","2:00 pm"];	/*TEMP ARRAY*/
+	
+	for(var i = 0; i < times.length; i++) {
+		
+		$fatList.append('<li>' + times[i] + '</li>');
+	}
+	
+	$fatCollapsible.append($fatList);
+	$fatCollapsibleSet.append($fatCollapsible);
+	
+	// append buttons
+	page.addContent("body", $fatCollapsible);
+	page.addContent("body", $returnToStopBtn);
+	
+	// Footer
+	page.addContent("footer","<h1>An app developed by David Easley, Ryan Rodriguez, Josh Wu and Chen Long</h1>");
+
+	
+	
 }
 
 
@@ -101,7 +149,7 @@ generateSettingsContentStartup = function(page, list) {
 	// manage which page loads first on startup
 	//
 
-	$startupButton = $('<li><a href="#popupStartup"" class="ui-btn" data-rel="popup">Start Page</a></li>');
+	$startupButton = $('<li><a href="#popupStartup" class="ui-btn" data-rel="popup">Start Page</a></li>');
 	$startupPopup = $('<div data-role="popup" id="popupStartup" data-theme="a"></div>');
 	// adds a close button to the popup
 	$startupPopup.append('<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>');
@@ -137,7 +185,7 @@ generateSettingsContentFavorites = function(page, list) {
 	//
 	// manage favorites
 	//
-	$favoritesButton = $('<li><a href="#popupFavorites"" class="ui-btn" data-rel="popup">Favorites</a></li>');
+	$favoritesButton = $('<li><a href="#popupFavorites" class="ui-btn" data-rel="popup">Favorites</a></li>');
 	$favoritesPopup = $('<div data-role="popup" id="popupFavorites"><p>This is a completely basic popup, no options set.</p></div>');
 
 	page.addContent("body", $favoritesPopup);
@@ -148,7 +196,7 @@ generateSettingsContentMapStart = function(page, list) {
 	//
 	// manage where the map centers at startup
 	//
-	$mapStartButton = $('<li><a href="#popupMapStart"" class="ui-btn" data-rel="popup">Starting Map Location</a></li>');
+	$mapStartButton = $('<li><a href="#popupMapStart" class="ui-btn" data-rel="popup">Starting Map Location</a></li>');
 	$mapStartPopup = $('<div data-role="popup" id="popupMapStart"><p>This is a completely basic popup, no options set.</p></div>');
 
 	page.addContent("body", $mapStartPopup);
@@ -159,7 +207,7 @@ generateSettingsContentFontSize = function(page, list) {
 	//
 	// manage font size
 	//
-	$fontSizeButton = $('<li><a href="#popupFontSize"" class="ui-btn" data-rel="popup">Font Size</a></li>');
+	$fontSizeButton = $('<li><a href="#popupFontSize" class="ui-btn" data-rel="popup">Font Size</a></li>');
 	$fontSizePopup = $('<div data-role="popup" id="popupFontSize"></div>');
 
 	// adds a close button
