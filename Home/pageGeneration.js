@@ -51,7 +51,7 @@ generateRouteContent = function(page) {
 	page.addContent("body",'<p class="routesContent">Next Arrival at: ' + arrivalTime + '</p>');
 	
 	// Body Buttons
-	var $fatCollapsibleSet = $('<div class="ui-collapsible-set">');
+	var $fatCollapsibleSet = $('<div class="ui-collapsible-set"></div>');
 	var $fatCollapsible = $('<div data-role="collapsible"></div>');
 	var $returnToStopBtn = $('<a class="ui-btn">Return to Stop on Map</a>');
 
