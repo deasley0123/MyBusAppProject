@@ -126,19 +126,25 @@ $(document).on("pagebeforeshow ",function(event){
 });
 
 	//$panel.append($favorites);
-var $favorites = $('<a id = "Fav" class="ui-btn">Favorites</a>');
-$panel.append($favorites);
+var favorites = new Favorite();
+
 $(document).one('pagebeforecreate', function () {
 	$.mobile.pageContainer.prepend($panel);
 	// Enhances all children of all elements in the set of matched elements.
 	$panel.panel().enhanceWithin();
 });
 
+//testing adding elements
+favorites.addElement("apple");
+favorites.addElement("orange");
+favorites.addElement("banana");
+favorites.show();
+
 // animates collapsibles
 // http://stackoverflow.com/questions/23566967/jquerymobile-1-4-2-animate-collapsible
 $(document).on("pagecreate", function(){
-    $(".ui-collapsible-heading-toggle").on("click", function (e) { 
-        var current = $(this).closest(".ui-collapsible");             
+    $(".ui-collapsible-heading-toggle").on("click", function (e) {
+        var current = $(this).closest(".ui-collapsible");
         if (current.hasClass("ui-collapsible-collapsed")) {
             //collapse all others and then expand this one
             $(".ui-collapsible").not(".ui-collapsible-collapsed").find(".ui-collapsible-heading-toggle").click();
