@@ -84,7 +84,13 @@ generateRouteContent = function(page) {
 generateMapContent = function(page) {
 
 	page.addContent("header","<h1>MyBus City Map</h1>");
-	page.addContent("header",'<div data-role="navbar"></div>');
+	
+	//modified navbar to include additional options for markers/favorites
+	$navbarMap = $('<div data-role="navbar"></div>');
+	$navbarMap.append('<ul><li><a href="#">Map Marker Options</a></li><li><a href="#">Favorites Options</a></li></ul>');
+	page.addContent("header", $navbarMap);
+	//
+	
 	page.addContent("body", '<div id="map"></div>');
 
 	var map = new GMaps({
