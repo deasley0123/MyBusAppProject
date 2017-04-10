@@ -1,6 +1,6 @@
 /****************************************************************
 *																*
-* Filename: Fvorites.js											*
+* Filename: Favorites.js										*
 * Authors: Ryan Rodriguez, Josh Wu, David Easley, Chen Long		*
 * Purpose: Defines a Favorites Constructor.						*
 *																*
@@ -12,33 +12,23 @@
 //
 function Favorite(){
   this.Favarr = [];
-  $collapsible = $('<div data-role = "collapsible"></div>');
-  $CollapsibleSet = $('<div class = "ui-collapsible-set"></div>');
+  $collapsibleSet = $('<div class="ui-collapsible-set"></div>');
+  $collapsible = $('<div data-role="collapsible"></div>');
   $collapsible.append("<h4>Favorites</h4>");
-  $list = $('<ul id = "favlist" data-role = "listview"></ul>');
+  $list = $('<ul id="favlist" data-role="listview"></ul>');
   $collapsible.append($list);
-  $CollapsibleSet.append($collapsible);
-  $panel.append($CollapsibleSet);
+  $collapsibleSet.append($collapsible);
+  $panel.append($collapsibleSet);
 }
 
 // add an element to Favorites list.
-Favorite.prototype.addElement = function(element){
+Favorite.prototype.addElement = function(element, pageID){
   this.Favarr.push(element);
-  $("favlist").append("<li><a href='#'>"+element+"</a></li>");
-  console.log("add"+this.Favarr);
+  console.log("<li><a href='#" + pageID + "'>"+element+"</a></li>");
+  $("#favlist").append("<li><a class='ui-btn' href='#" + pageID + "' data-transition='slide'>"+element+"</a></li>");
 }
 
 //Method that delect element in the array
 Favorite.prototype.delElement = function(element){
   Favarr.splice(element, 1);
-}
-
-Favorite.prototype.show = function(){
-  for(var i = 0; i<this.Favarr.length; i++)
-  {
-    console.log(this.Favarr[i]);
-    $list.append("<li><a href='#'>"+this.Favarr[i]+"</a></li>")
-  }
-
-
 }

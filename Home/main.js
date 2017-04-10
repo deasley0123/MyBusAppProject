@@ -43,6 +43,9 @@ onPageLoad = function() {
 	currentSettings.updateFontSize();
 
 
+	// testing favorites
+	favorites.addElement("Map", "MapPage");
+
 }
 
 //
@@ -134,11 +137,6 @@ $(document).one('pagebeforecreate', function () {
 	$panel.panel().enhanceWithin();
 });
 
-//testing adding elements
-favorites.addElement("apple");
-favorites.addElement("orange");
-favorites.addElement("banana");
-favorites.show();
 
 // animates collapsibles
 // http://stackoverflow.com/questions/23566967/jquerymobile-1-4-2-animate-collapsible
