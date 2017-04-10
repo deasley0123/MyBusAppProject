@@ -11,7 +11,7 @@
 //	basic page constructor
 //
 function Favorite(){
-  this.Favarr = [];
+  this.favArray = [];
   $collapsibleSet = $('<div class="ui-collapsible-set"></div>');
   $collapsible = $('<div data-role="collapsible"></div>');
   $collapsible.append("<h4>Favorites</h4>");
@@ -23,12 +23,15 @@ function Favorite(){
 
 // add an element to Favorites list.
 Favorite.prototype.addElement = function(element, pageID){
-  this.Favarr.push(element);
+  this.favArray.push(element);
   console.log("<li><a href='#" + pageID + "'>"+element+"</a></li>");
-  $("#favlist").append("<li><a class='ui-btn' href='#" + pageID + "' data-transition='slide'>"+element+"</a></li>");
+  var favId = "fav" + element;
+  $("#favlist").append("<li><a id='" + favId + "' class='ui-btn' href='#" + pageID + "' data-transition='slide'>"+element+"</a></li>");
 }
 
 //Method that delect element in the array
 Favorite.prototype.delElement = function(element){
-  Favarr.splice(element, 1);
+  favArray.splice(element, 1);
+  var favId = "fav" + element;
+  $("#" + favId).remove();
 }
