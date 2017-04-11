@@ -87,10 +87,59 @@ generateMapContent = function(page) {
 
 	//modified navbar to include additional options for markers/favorites
 	$navbarMap = $('<div data-role="navbar"></div>');
-	$navbarMap.append('<ul><li><a href="#">Map Marker Options</a></li><li><a href="#">Favorites Options</a></li></ul>');
+	$navbarMap.append('<ul><li><a href="#popupMapMarkers" class="ui-btn" data-rel="popup">Map Marker Options</a></li><li><a href="#">Favorites Options</a></li></ul>');
 	page.addContent("header", $navbarMap);
 	//
+	
+//
+//TEST- NOT FOR FINAL PRODUCT - POPUP LIST GENERATION
+//
+	$mapMarkersPopup = $('<div data-role="popup" id="popupMapMarkers" data-theme="a"></div>');
+	
+	// adds a close button to the popup
+	$mapMarkersPopup.append('<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-left">Close</a>');
+	// apply formatting to popup element
+	$mapMarkersList = $('<ul data-role="listview" data-inset="true" style="min-width:210px;"data-theme="b"></ul>');
+	$mapMarkersList.append('<li data-role="divider" data-theme="a">Pages</li>');
+	
+	//add list buttons
+	for(var i = 0; i < 25; i++)
+	{
+		$mapMarkerOption = $('<li><a class="ui-btn">' + 'Stub ' + i + '</a></li>');
+		$mapMarkersList.append($mapMarkerOption);
+	}
+	
+	//append list to popup
+	$mapMarkersPopup.append($mapMarkersList);
+	
+	//append popup to header on page
+	page.addContent("body", $mapMarkersPopup);
+	
+	//add scrolling capability
+	$('#popupMapMarkers').css('overflow-y', 'scroll');
+	
+	$('#popupMapMarkers').on(
+	{
+		popupbeforeposition: function() 
+		{
+			var maxHeight = $(window).height() - 70;
+			$('#popupMapMarkers').css('max-height', maxHeight + 'px');
+		}
+	});
+	
+//
+//TEST- Route options - Marker generation
+//
 
+	
+
+//
+//TEST- Route generation
+//
+	
+	
+	
+	
 	page.addContent("body", '<div id="map"></div>');
 
 	var map = new GMaps({
