@@ -11,27 +11,27 @@
 //	basic page constructor
 //
 function Favorite(){
-  this.favArray = [];
-  $collapsibleSet = $('<div class="ui-collapsible-set"></div>');
-  $collapsible = $('<div data-role="collapsible"></div>');
-  $collapsible.append("<h4>Favorites</h4>");
-  $list = $('<ul id="favlist" data-role="listview"></ul>');
-  $collapsible.append($list);
-  $collapsibleSet.append($collapsible);
-  $panel.append($collapsibleSet);
+	this.favArray = [];
+	$collapsibleSet = $('<div class="ui-collapsible-set"></div>');
+	$collapsible = $('<div data-role="collapsible"></div>');
+	$collapsible.append("<h4>Favorites</h4>");
+	$list = $('<ul id="favlist" data-role="listview"></ul>');
+	$collapsible.append($list);
+	$collapsibleSet.append($collapsible);
+	$panel.append($collapsibleSet);
 }
 
 // add an element to Favorites list.
 Favorite.prototype.addElement = function(element, pageID){
-  this.favArray.push(element);
-  console.log("<li><a href='#" + pageID + "'>"+element+"</a></li>");
-  var favId = "fav" + element;
-  $("#favlist").append("<li><a id='" + favId + "' class='ui-btn' href='#" + pageID + "' data-transition='slide'>"+element+"</a></li>");
+	this.favArray.push(element);
+	console.log("<li><a href='#" + pageID + "'>"+element+"</a></li>");
+	var favId = "fav" + element;
+	$("#favlist").append("<li><a id='" + favId + "' class='ui-btn' href='#" + pageID + "' data-transition='slide'>"+element+"</a></li>");
 }
 
 //Method that delect element in the array
 Favorite.prototype.delElement = function(element){
-  favArray.splice(element, 1);
-  var favId = "fav" + element;
-  $("#" + favId).remove();
+	favArray.splice(element, 1);
+	var favId = "fav" + element;
+	$("#" + favId).remove();
 }
