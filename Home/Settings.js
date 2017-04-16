@@ -11,12 +11,18 @@
 //
 function Settings() {
 	
+    // initialize to default
 	var startPage = 0;
 	var fontSize = 100;
+    var favorites = []; // first col is favElement, second col is pageID
 	
+    // initialize to saved settings if available
 	if (storageAvailable('localStorage')) {
 		startPage = parseInt(localStorage.getItem('startPage'), 10);
 		fontSize = localStorage.getItem('fontSize');
+        if(localStorage.getItem('favorites') != null) {
+            favorites = JSON.parse( localStorage.getItem('favorites') );
+        }
 	}
 	
 	this.setStartPage = function(page) {
@@ -35,6 +41,29 @@ function Settings() {
 		}
 		fontSize = size;
 	};
+    
+    this.addFavorite = function(fav, pageID) {
+        favorites.push([fav, pageID]);
+        if (storageAvailable('localStorage')) {
+			localStorage.setItem( 'favorites', JSON.stringify(favorites) );
+		}
+    }
+    
+    this.delFavorite = function(fav) {
+        // remove row
+        for (var i = 0; i < favorites.length; i++) {
+            if (favorites[i][0] == fav) {
+                favorites.splice(i, 1);
+            }
+        }
+        if (storageAvailable('localStorage')) {
+			localStorage.setItem( 'favorites', JSON.stringify(favorites) );
+		}
+    }
+    
+    this.getFavorites = function() {
+        return favorites;
+    }
 	
 	this.getStartPage = function() {
 		return startPage;

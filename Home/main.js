@@ -42,10 +42,6 @@ onPageLoad = function() {
 	// check settings
 	currentSettings.updateFontSize();
 
-
-	// testing favorites
-	favorites.addElement("Map", "MapPage");
-
 }
 
 //

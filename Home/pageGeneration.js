@@ -68,10 +68,26 @@ generateRouteContent = function(page) {
 
 	$fatCollapsible.append($fatList);
 	$fatCollapsibleSet.append($fatCollapsible);
-
+    
+    // Favorite Button
+    var $favButton = $('<a href="#popupFavPage" class="ui-btn" data-rel="popup">Favorite Route/Stop</a>'); 
+    //var $favPopup = $('<div data-role="popup" id="popupFavPage" data-theme="a"></div>');
+    //$favPopup.append('<p>Added to Favorites</p>');
+    $favButton.click( function() {
+        var success = favorites.addElement("Routes", "RoutesPage");
+        if(success) {
+            alert("Added to Favorites");
+        }
+        else {
+            alert("Already Favorited");
+        }
+    });
+    
 	// append buttons
 	page.addContent("body", $fatCollapsible);
 	page.addContent("body", $returnToStopBtn);
+   // page.addContent("body", $favPopup);
+    page.addContent("body", $favButton);
 
 	// Footer
 	page.addContent("footer","<h1>An app developed by David Easley, Ryan Rodriguez, Josh Wu and Chen Long</h1>");
@@ -248,17 +264,22 @@ generateSettingsContentFavorites = function(page, list) {
 	$favoritesList = $('<ul id="favSettingsList" data-role="listview" data-inset="true" style="min-width:210px;"data-theme="b"></ul>');
 	$favoritesList.append('<li data-role="divider" data-theme="a">Favorites</li>');
 
-	$(document).on("pagebeforeshow ",function(event){
-		for(var i = 0; i < favorites.favArray.length; i++) {
-			var $button = $('<li><a class="ui-btn">Remove \"' + favorites.favArray[i] + '\"</a></li>');
-
+    var updateFavoritesList = function() {
+        $(".favListBtn").remove();
+        var favArray = currentSettings.getFavorites();
+		for(var i = 0; i < favArray.length; i++) {
+            
+			var $button = $('<li><a class="ui-btn favListBtn">Remove \"' + favArray[i][0] + '\"</a></li>');
+            var favElement = favArray[i][0];
 			var removeFavorite = function(page) {
 				return function() {
 					// remove favorite
-					favorites.delElement(favorites.favArray[i]);
-
+					favorites.delElement(favElement);
+                    
 					// close popup
 					$favoritesPopup.popup( "close" );
+                    
+                    updateFavoritesList();
 				};
 			}
 
@@ -266,7 +287,8 @@ generateSettingsContentFavorites = function(page, list) {
 
 			$("#favSettingsList").append($button);
 		}
-	});
+    }
+	$(document).on('pageshow', updateFavoritesList);
 
 	// append list to popup
 	$favoritesPopup.append($favoritesList);
