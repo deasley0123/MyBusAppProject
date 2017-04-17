@@ -11,6 +11,30 @@
 	font-size: 100%;
 }
 
+.ui-content{
+  background:url('successpage.jpg') no-repeat center center fixed;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  margin: 0;
+ padding: 0;
+}
+
+.ui-panel{
+  background:url('panel.png') no-repeat center center fixed;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  margin: 0;
+ padding: 0;
+}
+
+.ui-listview{
+  opacity: 0.6;
+}
+
 .ui-header  .ui-btn{
 	font-size: 78.125%;
 }
@@ -18,7 +42,6 @@
 #SettingsPageBody{
     padding: 0;
 }​
-
 
 .disclaimer {
 	text-align: center;
