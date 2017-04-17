@@ -96,6 +96,10 @@ generateRouteContent = function(page) {
 
 }
 
+//
+//	Global Map Marker Variable
+//
+var markers = [];
 
 generateMapContent = function(page) {
 
@@ -119,11 +123,59 @@ generateMapContent = function(page) {
 	$mapMarkersList.append('<li data-role="divider" data-theme="a">Pages</li>');
 	
 	//add list buttons
-	for(var i = 0; i < 25; i++)
+	for(var i = 0; i < busRoutes.length; i++)
 	{
-		$mapMarkerOption = $('<li><a class="ui-btn">' + 'Stub ' + i + '</a></li>');
+		$mapMarkerOption = $('<li><a href="#" class="ui-btn">' + busRoutes[i].route_num + ' - ' + busRoutes[i].route_name + '</a></li>');
+		
+		$mapMarkerOption.click( function() {
+			map.removeMarkers();
+			for(var j = 40; j < busStops.length; j++)
+			{
+				var markerObject = map.addMarker(
+				{
+					lat: busStops[j].stop_lat,
+					lng: busStops[j].stop_lon,
+					title: busStops[j].stop_name,
+					infoWindow: {
+						content: '<p>'+busStops[j].stop_name+'</p><p>Stop '+busStops[j].stop_code+'</p>'+"<button onclick='myFunction()'>Click me</button>"
+					}
+				});
+			}
+		});
+		
 		$mapMarkersList.append($mapMarkerOption);
 	}
+	
+	//add all markers
+	$mapMarkerOption = $('<li><a href="#" class="ui-btn">' + 'Display All Markers' + '</a></li>');
+	$mapMarkerOption.click( function() {
+		map.removeMarkers();
+		for(var i = 0; i < busStops.length; i++)
+		{
+			var markerObject = map.addMarker(
+			{
+				lat: busStops[i].stop_lat,
+				lng: busStops[i].stop_lon,
+				title: busStops[i].stop_name,
+				infoWindow: {
+					content: '<p>'+busStops[i].stop_name+'</p><p>Stop '+busStops[i].stop_code+'</p>'+"<button onclick='myFunction()'>Click me</button>"
+				}
+			});
+		}
+	});
+	$mapMarkersList.append($mapMarkerOption);
+	
+	//hides all markers
+	$mapMarkerOption = $('<li><a href="#" class="ui-btn">' + 'Remove All Markers' + '</a></li>');
+	$mapMarkerOption.click( function() {
+		//alert("Sup");
+		map.removeMarkers();
+		
+	});
+	$mapMarkersList.append($mapMarkerOption);
+//
+//
+//
 	
 	//append list to popup
 	$mapMarkersPopup.append($mapMarkersList);
@@ -177,7 +229,7 @@ generateMapContent = function(page) {
 
 	for(var i = 0; i < busStops.length; i++)
 	{
-		map.addMarker(
+		var markerObject = map.addMarker(
 		{
 			lat: busStops[i].stop_lat,
 			lng: busStops[i].stop_lon,
