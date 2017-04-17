@@ -53,7 +53,6 @@ generateRouteContent = function(page) {
 	// Body Buttons
 	var $fatCollapsibleSet = $('<div class="ui-collapsible-set"></div>');
 	var $fatCollapsible = $('<div data-role="collapsible"></div>');
-	var $returnToStopBtn = $('<a class="ui-btn">Return to Stop on Map</a>');
 
 	// modify buttons
 	$fatCollapsible.append("<H4>Show Future Arrival Times");
@@ -68,9 +67,9 @@ generateRouteContent = function(page) {
 
 	$fatCollapsible.append($fatList);
 	$fatCollapsibleSet.append($fatCollapsible);
-    
+
     // Favorite Button
-    var $favButton = $('<a href="#popupFavPage" class="ui-btn" data-rel="popup">Favorite Route/Stop</a>'); 
+    var $favButton = $('<a href="#popupFavPage" class="ui-btn" data-rel="popup">Favorite Route/Stop</a>');
     //var $favPopup = $('<div data-role="popup" id="popupFavPage" data-theme="a"></div>');
     //$favPopup.append('<p>Added to Favorites</p>');
     $favButton.click( function() {
@@ -82,10 +81,9 @@ generateRouteContent = function(page) {
             alert("Already Favorited");
         }
     });
-    
+
 	// append buttons
 	page.addContent("body", $fatCollapsible);
-	page.addContent("body", $returnToStopBtn);
    // page.addContent("body", $favPopup);
     page.addContent("body", $favButton);
 
@@ -96,6 +94,31 @@ generateRouteContent = function(page) {
 
 }
 
+//dynamically amend routes page with current bust stop information, go to routes page
+// pre: stopArrayNum is the number in the busStops array of the selected stop
+// routeID is the route_id of the selected route
+amendRouteContent =  function(stopArrayNum, routeID){
+
+	//clear current contents
+	$(".routesContent").remove();
+	var num = 0;
+	var routeName = "Route Not Found";
+	var stopNum = busStops[stopArrayNum].stop_code;
+	var stopName = busStops[stopArrayNum].stop_name;
+	var arrivalTime = "Never";
+
+	//retrieve route information
+	num = getLineNumFromID(routeID)
+	if("Route Not Found" != num){
+		console.log("Nope");
+		routeName = busRoutes[num].route_name;
+		arrivalTime = "12:00pm (this is a stub)";
+	}
+
+	menuPages[1].addContentBefore("body",'<p class="routesContent">Next Arrival at: ' + arrivalTime + '</p>');
+	menuPages[1].addContentBefore("body",'<p class="routesContent">Stop ' + stopNum + ': ' + stopName + '</p>');
+	menuPages[1].addContentBefore("body",'<h4 class="routesContent">' + routeName + '</h4>');
+}
 
 generateMapContent = function(page) {
 
@@ -106,56 +129,56 @@ generateMapContent = function(page) {
 	$navbarMap.append('<ul><li><a href="#popupMapMarkers" class="ui-btn" data-rel="popup">Map Marker Options</a></li><li><a href="#">Favorites Options</a></li></ul>');
 	page.addContent("header", $navbarMap);
 	//
-	
+
 //
 //TEST- NOT FOR FINAL PRODUCT - POPUP LIST GENERATION
 //
 	$mapMarkersPopup = $('<div data-role="popup" id="popupMapMarkers" data-theme="a"></div>');
-	
+
 	// adds a close button to the popup
 	$mapMarkersPopup.append('<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-left">Close</a>');
 	// apply formatting to popup element
 	$mapMarkersList = $('<ul data-role="listview" data-inset="true" style="min-width:210px;"data-theme="b"></ul>');
 	$mapMarkersList.append('<li data-role="divider" data-theme="a">Pages</li>');
-	
+
 	//add list buttons
 	for(var i = 0; i < 25; i++)
 	{
 		$mapMarkerOption = $('<li><a class="ui-btn">' + 'Stub ' + i + '</a></li>');
 		$mapMarkersList.append($mapMarkerOption);
 	}
-	
+
 	//append list to popup
 	$mapMarkersPopup.append($mapMarkersList);
-	
+
 	//append popup to header on page
 	page.addContent("body", $mapMarkersPopup);
-	
+
 	//add scrolling capability
 	$('#popupMapMarkers').css('overflow-y', 'scroll');
-	
+
 	$('#popupMapMarkers').on(
 	{
-		popupbeforeposition: function() 
+		popupbeforeposition: function()
 		{
 			var maxHeight = $(window).height() - 70;
 			$('#popupMapMarkers').css('max-height', maxHeight + 'px');
 		}
 	});
-	
+
 //
 //TEST- Route options - Marker generation
 //
 
-	
+
 
 //
 //TEST- Route generation
 //
-	
-	
-	
-	
+
+
+
+
 	page.addContent("body", '<div id="map"></div>');
 
 	var map = new GMaps({
@@ -268,17 +291,17 @@ generateSettingsContentFavorites = function(page, list) {
         $(".favListBtn").remove();
         var favArray = currentSettings.getFavorites();
 		for(var i = 0; i < favArray.length; i++) {
-            
+
 			var $button = $('<li><a class="ui-btn favListBtn">Remove \"' + favArray[i][0] + '\"</a></li>');
             var favElement = favArray[i][0];
 			var removeFavorite = function(page) {
 				return function() {
 					// remove favorite
 					favorites.delElement(favElement);
-                    
+
 					// close popup
 					$favoritesPopup.popup( "close" );
-                    
+
                     updateFavoritesList();
 				};
 			}

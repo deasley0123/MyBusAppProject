@@ -19,11 +19,9 @@ var pageHistory = new Stack(); // page history - current page at top
 
 // moved to outside function for use with panel
 var menuPageIDs = ["HomePage", "RoutesPage", "MapPage", "SettingsPage"]; // array of menu page IDs -- In the future this list can be retrieved from config.txt
+var menuPages = []; // array of the menu pages
 
 onPageLoad = function() {
-
-
-	var menuPages = [];				 // array of the menu pages
 
 	// load "loading" page
 	$.mobile.initializePage();

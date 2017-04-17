@@ -78,6 +78,38 @@ MakePage.prototype.addContent = function(section, htmlString){
 
 }
 
+//
+//	pre: section = "header", "body" or "footer"
+//	post: appends content to the given section
+//
+MakePage.prototype.addContentBefore = function(section, htmlString){
+
+	//
+	// page sections
+	//
+
+	// header
+	if(section == "header")
+	{
+		var header = "#" + this.headerID();
+		$(header).prepend(htmlString);
+	}
+
+	// body
+	if(section == "body")
+	{
+		var body = "#" + this.bodyID();
+		$(body).prepend(htmlString);
+	}
+
+	// footer
+	if(section == "footer")
+	{
+		var footer = "#" + this.footerID();
+		$(footer).prepend(htmlString);
+	}
+
+}
 
 MakePage.prototype.loadPage = function () {
 	$.mobile.pageContainer.prepend(this.$page); // loads the page to DOM
