@@ -42,8 +42,8 @@ function Settings() {
 		fontSize = size;
 	};
     
-    this.addFavorite = function(fav, pageID) {
-        favorites.push([fav, pageID]);
+    this.addFavorite = function(favElementArr) {
+        favorites.push(favElementArr);
         if (storageAvailable('localStorage')) {
 			localStorage.setItem( 'favorites', JSON.stringify(favorites) );
 		}

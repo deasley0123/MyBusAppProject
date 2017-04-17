@@ -57,7 +57,7 @@ Favorite.prototype.addElement = function(favElement, pageID){
         if( favArray.length == 0 ) {
             $("#noFavText").remove();
         }
-        currentSettings.addFavorite(favElement, pageID);
+        currentSettings.addFavorite([favElement, pageID]);
         var favID = "fav" + favElement;
         $("#favList").append("<li><a id='" + favID + "' class='ui-btn' href='#" + pageID + "' data-transition='slide'>"+favElement+"</a></li>");
     }
