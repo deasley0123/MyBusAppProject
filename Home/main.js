@@ -149,3 +149,23 @@ $(document).on("pagecreate", function(){
 		}
 	});
 });
+
+//adjustheight
+//http://stackoverflow.com/questions/19591991/dynamically-assign-height-to-jquery-mobile-page-based-on-device
+function ScaleContentToDevice() {
+    scroll(0, 0);
+    var headerHeight = $(".ui-header:visible").outerHeight();
+    var footerHeight = $(".ui-footer:visible").outerHeight();
+    var viewportHeight = $(window).height();
+
+    var content = $(".ui-content:visible");
+    var contentMargins =  content.outerHeight() - content.height();
+
+    var contentheight = viewportHeight - headerHeight - footerHeight - contentMargins;
+
+    content.height(contentheight);
+};
+
+$(document).on("pageshow", function(){
+    ScaleContentToDevice();
+});
