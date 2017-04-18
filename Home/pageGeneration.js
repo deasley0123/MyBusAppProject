@@ -111,7 +111,6 @@ amendRouteContent =  function(stopArrayNum, routeID){
 	//function in busRoutes.js
 	num = getLineNumFromID(routeID)
 	if("Route Not Found" != num){
-		console.log("Nope");
 		routeName = busRoutes[num].route_name;
 		arrivalTime = "12:00pm (this is a stub)";
 	}
