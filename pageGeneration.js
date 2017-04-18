@@ -253,10 +253,11 @@ generateMapContent = function(page) {
 
 	for(var i = 0; i < busStops.length; i++)
 	{
-		mapRouteButton = '';
+		var mapRouteButton = '';
 		for(var j = 0; j < (busStops[i])["route_id_arr"].length; j++)
 		{
-			mapRouteButton = mapRouteButton + '<li><a href="#" class="ui-btn">Placeholder</a></li>';
+			var mapRouteName = "Route " + (busStops[i])["route_id_arr"][j].slice(3,5);
+			mapRouteButton = mapRouteButton + '<li><a href="#" class="ui-btn">'+mapRouteName+'</a></li>';
 		}
 		var markerObject = map.addMarker(
 		{
