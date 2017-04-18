@@ -253,6 +253,11 @@ generateMapContent = function(page) {
 
 	for(var i = 0; i < busStops.length; i++)
 	{
+		mapRouteButton = '';
+		for(var j = 0; j < (busStops[i])["route_id_arr"].length; j++)
+		{
+			mapRouteButton = mapRouteButton + '<li><a href="#" class="ui-btn">Placeholder</a></li>';
+		}
 		var markerObject = map.addMarker(
 		{
 			lat: busStops[i].stop_lat,
@@ -260,7 +265,7 @@ generateMapContent = function(page) {
 			title: busStops[i].stop_name,
 			infoWindow: {
 				content: '<p>'+busStops[i].stop_name+'</p><p>Stop '+busStops[i].stop_code+
-				'</p>'+"<button onclick='amendRouteContent("+i+","+busStops[i].route_id_arr+")'>Click me</button>"
+				'</p><ul>' + mapRouteButton + '</ul>'
 			}
 		});
 	}
