@@ -118,8 +118,8 @@ amendRouteContent =  function(stopArrayNum, routeID){
 	menuPages[1].addContentBefore("body",'<p class="routesContent">Next Arrival at: ' + arrivalTime + '</p>');
 	menuPages[1].addContentBefore("body",'<p class="routesContent">Stop ' + stopNum + ': ' + stopName + '</p>');
 	menuPages[1].addContentBefore("body",'<h4 class="routesContent">' + routeName + '</h4>');
-	
-    updateHistory(menuPageIDs[1]);
+
+    updateHistory(menuPageIDs[1])();
 }
 
 //

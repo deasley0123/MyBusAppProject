@@ -8,35 +8,41 @@
 }
 /*overrides jquery mobile presets*/
 .ui-btn{
+  opacity : 0.6;
 	font-size: 100%;
 }
 
+.ui-collapsible-heading-toggle{
+  background-color: rgba(202,225,255,0.6);
+  overflow:auto;
+}
 .ui-content{
-
-    background:url('successpage.jpg') no-repeat center center fixed;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    margin: 0;
-    padding: 0;
+  background:url('successpage.jpg') no-repeat center center fixed;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  margin: 0;
+ padding: 0;
 }
 
 .ui-panel{
-    background-color: #bcc6cc;
-    /*background:url('panel.png') no-repeat center center fixed;*/
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    margin: 0;
-    padding: 0;
+  background:url('panel.jpg');
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  margin: 0;
+ padding: 0;
 }
 
-.ui-listview{
-  opacity: 0.6;
+#RoutesPageHeader{
+  background-color: lightblue;
 }
 
+#RoutesPageFooter{
+  background-color: lightblue;
+}
 .ui-header  .ui-btn{
 	font-size: 78.125%;
 }
@@ -45,7 +51,6 @@
     padding: 0;
 }​
 
-
 .disclaimer {
 	text-align: center;
 }
@@ -53,7 +58,6 @@
 /*
 * Gmaps parameters   gmaps key if needed: AIzaSyBkCYqa7NKztnEyy4QEV3d02kQuEmKfiR4
 */
-
 #map{
   display: block;
   margin-left: 2.5%;
