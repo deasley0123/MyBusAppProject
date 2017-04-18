@@ -62,8 +62,7 @@ $(document).ready(onPageLoad);
 //
 var $panel = $('<div data-role="panel" id="myPanel" data-position="left" data-display="reveal" data-theme="a"></div>');
 $panel.append('<h2>Menu</h2>');
-$panel.append('<p>Close the panel by pressing the ESC key, by swiping to the left or clicking outside of the panel.</p>');
-$buttonPanelList = $('<ul data-role="listview" data-inset="true" style="min-width:210px;"data-theme="a"></ul>');
+$buttonPanelList = $('<ul id="panelList" data-role="listview" data-inset="true" style="min-width:210px;"data-theme="a"></ul>');
 
 //
 //	panel buttons
@@ -122,11 +121,10 @@ $(document).on("pagebeforeshow ",function(event){
 	}
 });
 
-	//$panel.append($favorites);
-var favorites = new Favorite();
-
 $(document).one('pagebeforecreate', function () {
+
 	$.mobile.pageContainer.prepend($panel);
+	var favorites = new Favorite();
 	// Enhances all children of all elements in the set of matched elements.
 	$panel.panel().enhanceWithin();
 });

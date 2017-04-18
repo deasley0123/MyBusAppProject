@@ -11,15 +11,15 @@
 //	basic page constructor
 //
 function Favorite(){
-	
+
     $collapsibleSet = $('<div class="ui-collapsible-set"></div>');
 	$collapsible = $('<div data-role="collapsible"></div>');
 	$collapsible.append("<h4>Favorites</h4>");
 	$list = $('<ul id="favList" data-role="listview"></ul>');
-    
+
     var favArray = currentSettings.getFavorites(); // row 0 - element, row 1 - pageID
     var i, favElement, favID, pageID;
-    
+
     for(i = 0; i < favArray.length; i++) {
         favElement = favArray[i][0];
         favID = "fav" + favArray[i][0];
@@ -29,22 +29,27 @@ function Favorite(){
     if(favArray.length == 0) {
         $list.append("<p id='noFavText'>No Favorites Added</p>");
     }
-        
+
 	$collapsible.append($list);
 	$collapsibleSet.append($collapsible);
-	$panel.append($collapsibleSet);
+
+	$.fn.exists = function () {
+    	return this.length !== 0;
+	}
+	console.log($("#panelList").exists());
+	$("#panelList").append($collapsibleSet);
 }
 
 // add an element to Favorites list if it doesn't exist yet.
 // return true if successful
 Favorite.prototype.addElement = function(favElement, pageID){
-    
+
     var i;
     var isAlreadyFavorite = 0;
-    
+
     // get current fav array
     var favArray = currentSettings.getFavorites();
-    
+
     //check if favorite is already added
     for( i = 0; i < favArray.length; i++) {
         if( favElement == favArray[i][0] ) {
@@ -67,11 +72,11 @@ Favorite.prototype.addElement = function(favElement, pageID){
 
 // delete an element from Favorites list, if it exists
 Favorite.prototype.delElement = function(favElement){
-	
+
     // get current fav array
     var favArray = currentSettings.getFavorites();
     var isFavorite = 0;
-    
+
     //check if favorite exists
     for( i = 0; i < favArray.length; i++) {
         if( favElement == favArray[i][0] ) {
@@ -79,7 +84,7 @@ Favorite.prototype.delElement = function(favElement){
             break;
         }
     }
-    
+
     // return true and remove if favorite exists
     if(isFavorite) {
         currentSettings.delFavorite(favElement);
