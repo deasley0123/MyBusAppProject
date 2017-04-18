@@ -12,23 +12,25 @@
 }
 
 .ui-content{
-  background:url('successpage.jpg') no-repeat center center fixed;
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  margin: 0;
- padding: 0;
+
+    background:url('successpage.jpg') no-repeat center center fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    margin: 0;
+    padding: 0;
 }
 
 .ui-panel{
-  background:url('panel.png') no-repeat center center fixed;
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  margin: 0;
- padding: 0;
+    background-color: #bcc6cc;
+    /*background:url('panel.png') no-repeat center center fixed;*/
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    margin: 0;
+    padding: 0;
 }
 
 .ui-listview{
@@ -43,6 +45,7 @@
     padding: 0;
 }​
 
+
 .disclaimer {
 	text-align: center;
 }
@@ -53,10 +56,12 @@
 
 #map{
   display: block;
-  margin: 0 auto;
+  margin-left: 2.5%;
+  margin-top: 2.5%;
   -moz-box-shadow: 0px 5px 20px #ccc;
   -webkit-box-shadow: 0px 5px 20px #ccc;
   box-shadow: 0px 5px 20px #ccc;
+
 }
 
 .overlay{

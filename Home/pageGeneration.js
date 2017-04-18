@@ -201,14 +201,14 @@ generateMapContent = function(page) {
 
 	//append list to popup
 	$mapMarkersPopup.append($mapMarkersList);
-	
+
 	//
 	//	POPUP LIST GENERATION CODE END
 	//
 
 	//append popup to header on page
 	page.addContent("body", $mapMarkersPopup);
-	
+
 
 	//add scrolling capability
 	$('#popupMapMarkers').css('overflow-y', 'scroll');
@@ -254,10 +254,11 @@ generateMapContent = function(page) {
 
 	for(var i = 0; i < busStops.length; i++)
 	{
-		mapRouteButton = '';
+		var mapRouteButton = '';
 		for(var j = 0; j < (busStops[i])["route_id_arr"].length; j++)
 		{
-			mapRouteButton = mapRouteButton + '<li><a href="#" class="ui-btn">Placeholder</a></li>';
+			mapRouteName = "Route " + (busStops[i])["route_id_arr"][j].slice(3,5);
+			mapRouteButton = mapRouteButton + '<li><a href="#" class="ui-btn">' + mapRouteName + '</a></li>';
 		}
 		var markerObject = map.addMarker(
 		{
@@ -276,7 +277,8 @@ generateMapContent = function(page) {
 		map.refresh();
 	});
 
-
+	// Footer
+	page.addContent("footer","<h1>An app developed by David Easley, Ryan Rodriguez, Josh Wu and Chen Long</h1>");
 
 }
 
