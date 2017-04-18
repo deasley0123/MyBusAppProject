@@ -108,6 +108,7 @@ amendRouteContent =  function(stopArrayNum, routeID){
 	var arrivalTime = "Never";
 
 	//retrieve route information
+	//function in busRoutes.js
 	num = getLineNumFromID(routeID)
 	if("Route Not Found" != num){
 		console.log("Nope");
@@ -118,6 +119,7 @@ amendRouteContent =  function(stopArrayNum, routeID){
 	menuPages[1].addContentBefore("body",'<p class="routesContent">Next Arrival at: ' + arrivalTime + '</p>');
 	menuPages[1].addContentBefore("body",'<p class="routesContent">Stop ' + stopNum + ': ' + stopName + '</p>');
 	menuPages[1].addContentBefore("body",'<h4 class="routesContent">' + routeName + '</h4>');
+	
 }
 
 //
@@ -131,13 +133,12 @@ generateMapContent = function(page) {
 
 	//modified navbar to include additional options for markers/favorites
 	$navbarMap = $('<div data-role="navbar"></div>');
-	$navbarMap.append('<ul><li><a href="#popupMapMarkers" class="ui-btn" data-rel="popup">Map Marker Options</a></li><li><a href="#">Favorites Options</a></li></ul>');
+	$navbarMap.append('<ul><li><a href="#popupMapMarkers" class="ui-btn" data-rel="popup">Map Marker Options</a></li></ul>'); //Reference:<li><a href="#">Favorites Options</a></li>
 	page.addContent("header", $navbarMap);
-	//
 
-//
-//TEST- NOT FOR FINAL PRODUCT - POPUP LIST GENERATION
-//
+	//
+	//	POPUP LIST GENERATION
+	//
 	$mapMarkersPopup = $('<div data-role="popup" id="popupMapMarkers" data-theme="a"></div>');
 
 	// adds a close button to the popup
@@ -151,9 +152,10 @@ generateMapContent = function(page) {
 	{
 		$mapMarkerOption = $('<li><a href="#" class="ui-btn">' + busRoutes[i].route_num + ' - ' + busRoutes[i].route_name + '</a></li>');
 
+		// TEST FUNCTION - USED FOR SPECIFIC ROUTES
 		$mapMarkerOption.click( function() {
 			map.removeMarkers();
-			for(var j = 40; j < busStops.length; j++)
+			for(var j = 100; j < busStops.length; j++)
 			{
 				var markerObject = map.addMarker(
 				{
@@ -161,7 +163,7 @@ generateMapContent = function(page) {
 					lng: busStops[j].stop_lon,
 					title: busStops[j].stop_name,
 					infoWindow: {
-						content: '<p>'+busStops[j].stop_name+'</p><p>Stop '+busStops[j].stop_code+'</p>'+"<button onclick='myFunction()'>Click me</button>"
+						content: '<p>'+busStops[j].stop_name+'</p><p>Stop '+busStops[j].stop_code+'</p>'+"<button onclick='amendRouteContent("+i+","+busStops[j].route_id_arr+")'>Click me</button>"
 					}
 				});
 			}
@@ -182,7 +184,7 @@ generateMapContent = function(page) {
 				lng: busStops[i].stop_lon,
 				title: busStops[i].stop_name,
 				infoWindow: {
-					content: '<p>'+busStops[i].stop_name+'</p><p>Stop '+busStops[i].stop_code+'</p>'+"<button onclick='myFunction()'>Click me</button>"
+					content: '<p>'+busStops[i].stop_name+'</p><p>Stop '+busStops[i].stop_code+'</p>'+"<button onclick='amendRouteContent("+i+","+busStops[i].route_id_arr+")'>Click me</button>"
 				}
 			});
 		}
@@ -192,20 +194,20 @@ generateMapContent = function(page) {
 	//hides all markers
 	$mapMarkerOption = $('<li><a href="#" class="ui-btn">' + 'Remove All Markers' + '</a></li>');
 	$mapMarkerOption.click( function() {
-		//alert("Sup");
 		map.removeMarkers();
-
 	});
 	$mapMarkersList.append($mapMarkerOption);
-//
-//
-//
 
 	//append list to popup
 	$mapMarkersPopup.append($mapMarkersList);
+	
+	//
+	//	POPUP LIST GENERATION CODE END
+	//
 
 	//append popup to header on page
 	page.addContent("body", $mapMarkersPopup);
+	
 
 	//add scrolling capability
 	$('#popupMapMarkers').css('overflow-y', 'scroll');
@@ -228,8 +230,6 @@ generateMapContent = function(page) {
 //
 //TEST- Route generation
 //
-
-
 
 
 	page.addContent("body", '<div id="map"></div>');
@@ -260,7 +260,7 @@ generateMapContent = function(page) {
 			title: busStops[i].stop_name,
 			infoWindow: {
 				content: '<p>'+busStops[i].stop_name+'</p><p>Stop '+busStops[i].stop_code+
-				'</p>'+"<button onclick='myFunction()'>Click me</button>"
+				'</p>'+"<button onclick='amendRouteContent("+i+","+busStops[i].route_id_arr+")'>Click me</button>"
 			}
 		});
 	}
