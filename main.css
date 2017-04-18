@@ -1,0 +1,103 @@
+/*controls global text size*/
+.txtwrapper{
+    font-size: 100%;
+}
+
+.welcome {
+	text-align: center;
+}
+/*overrides jquery mobile presets*/
+.ui-btn{
+  opacity : 0.6;
+	font-size: 100%;
+}
+
+.ui-collapsible-heading-toggle{
+  background-color: rgba(202,225,255,0.6);
+  overflow:auto;
+}
+.ui-content{
+  background:url('successpage.jpg') no-repeat center center fixed;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  margin: 0;
+ padding: 0;
+}
+
+.ui-panel{
+  background:url('panel.jpg');
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  margin: 0;
+ padding: 0;
+}
+
+#RoutesPageHeader{
+  background-color: lightblue;
+}
+
+#RoutesPageFooter{
+  background-color: lightblue;
+}
+.ui-header  .ui-btn{
+	font-size: 78.125%;
+}
+
+#SettingsPageBody{
+    padding: 0;
+}​
+
+.disclaimer {
+	text-align: center;
+}
+
+/*
+* Gmaps parameters   gmaps key if needed: AIzaSyBkCYqa7NKztnEyy4QEV3d02kQuEmKfiR4
+*/
+
+#map{
+  display: block;
+  margin: 0 auto;
+  -moz-box-shadow: 0px 5px 20px #ccc;
+  -webkit-box-shadow: 0px 5px 20px #ccc;
+  box-shadow: 0px 5px 20px #ccc;
+}
+
+.overlay{
+  display:block;
+  text-align:center;
+  color:#fff;
+  font-size:60px;
+  line-height:80px;
+  opacity:0.8;
+  background:#4477aa;
+  border:solid 3px #336699;
+  border-radius:4px;
+  box-shadow:2px 2px 10px #333;
+  text-shadow:1px 1px 1px #666;
+  padding:0 4px;
+}
+
+.overlay_arrow{
+  left:50%;
+  margin-left:-16px;
+  width:0;
+  height:0;
+  position:absolute;
+}
+.overlay_arrow.above{
+  bottom:-15px;
+  border-left:16px solid transparent;
+  border-right:16px solid transparent;
+  border-top:16px solid #336699;
+}
+.overlay_arrow.below{
+  top:-15px;
+  border-left:16px solid transparent;
+  border-right:16px solid transparent;
+  border-bottom:16px solid #336699;
+}

@@ -111,7 +111,6 @@ amendRouteContent =  function(stopArrayNum, routeID){
 	//function in busRoutes.js
 	num = getLineNumFromID(routeID)
 	if("Route Not Found" != num){
-		console.log("Nope");
 		routeName = busRoutes[num].route_name;
 		arrivalTime = "12:00pm (this is a stub)";
 	}
@@ -119,7 +118,8 @@ amendRouteContent =  function(stopArrayNum, routeID){
 	menuPages[1].addContentBefore("body",'<p class="routesContent">Next Arrival at: ' + arrivalTime + '</p>');
 	menuPages[1].addContentBefore("body",'<p class="routesContent">Stop ' + stopNum + ': ' + stopName + '</p>');
 	menuPages[1].addContentBefore("body",'<h4 class="routesContent">' + routeName + '</h4>');
-
+	
+    updateHistory(menuPageIDs[1]);
 }
 
 //
