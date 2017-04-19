@@ -17,6 +17,12 @@ var pageHistory = new Stack(); // page history - current page at top
 // main thread
 //
 
+// global map variable
+var map;
+
+//	Global Map Marker Variable
+var markers = [];
+
 // moved to outside function for use with panel
 var menuPageIDs = ["HomePage", "RoutesPage", "MapPage", "SettingsPage"]; // array of menu page IDs -- In the future this list can be retrieved from config.txt
 var menuPages = []; // array of the menu pages
