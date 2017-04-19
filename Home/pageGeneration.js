@@ -42,12 +42,12 @@ generateRouteContent = function(page) {
 	page.addContent("header",'<div data-role="navbar"></div>');
 
 	// Body Text
-	var routeName = "Fake Route Name";
+	var routeName = "No Route Selected";
 	page.addContent("body",'<h4 class="routesContent">' + routeName + '</h4>')
-	var stopName = "Fake Stop Name";
-	var stopNum = 99;
-	page.addContent("body",'<p class="routesContent">For Stop ' + stopNum + ': ' + stopName + '</p>');
-	var arrivalTime = "12:00pm";
+	var stopName = "No Stop Selected";
+	var stopNum = "";
+	page.addContent("body",'<p class="routesContent">Stop' + stopNum + ': ' + stopName + '</p>');
+	var arrivalTime = "N/A";
 	page.addContent("body",'<p class="routesContent">Next Arrival at: ' + arrivalTime + '</p>');
 
 	// Body Buttons

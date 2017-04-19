@@ -11,10 +11,14 @@ createMapMarkerOption = function(index) {
     var busRoutesID = busRoutes[index].route_num;
 
     //
-    //	FIX
+    // the anon function should toggle/appear to toggle the approriate route
+    // current implemenation simply loads the single route without any context for other routes
     //
-    // TEST FUNCTION - USED FOR SPECIFIC ROUTES - buttons in list
-    // Click event for button in popup list
+    // current idea:    save currently displayed routes to a 2D array where each entry is [route, isDisplayed]
+    //                  check given route in array to see if isDisplayed = true
+    //                  if so,  set isDisplayed to false and display all routes where isDisplayed = true
+    //                  if not, set isDisplayed to true  and display all routes where isDisplayed = true
+    
     $mapMarkerOption.click( function() {
         map.removeMarkers();
         
@@ -31,7 +35,7 @@ createMapMarkerOption = function(index) {
                 var routeID = "\'" + (busStops[j])["route_id_arr"][k] + "\'";
                 
                 // Create button for each route on the button
-                mapRouteButton = mapRouteButton + '<li><a onclick="amendRouteContent('+ j + ',' + routeID + ')" href="#RoutesPage" >' + mapRouteName + '</a></li>';
+                mapRouteButton = mapRouteButton + '<li><a class="ui-btn" onclick="amendRouteContent('+ j + ',' + routeID + ')" href="#RoutesPage" >' + mapRouteName + '</a></li>';
                 if(busRoutesID == busStopRouteID)
                 {
                     var markerObject = map.addMarker(
