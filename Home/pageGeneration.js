@@ -151,21 +151,45 @@ generateMapContent = function(page) {
 	for(var i = 0; i < busRoutes.length; i++)
 	{
 		$mapMarkerOption = $('<li><a href="#" class="ui-btn">' + busRoutes[i].route_num + ' - ' + busRoutes[i].route_name + '</a></li>');
+		
+		var busRoutesID = busRoutes[i].route_num;
 
-		// TEST FUNCTION - USED FOR SPECIFIC ROUTES
+		//
+		//	FIX
+		//
+		// TEST FUNCTION - USED FOR SPECIFIC ROUTES - buttons in list
+		// Click event for button in popup list
 		$mapMarkerOption.click( function() {
 			map.removeMarkers();
-			for(var j = 100; j < busStops.length; j++)
+			
+			//go through busStops array
+			for(var j = 0; j < busStops.length; j++)
 			{
-				var markerObject = map.addMarker(
+				//go through route_id array within each busStop array element
+				for(var k = 0; k < (busStops[j])["route_id_arr"].length; k++)
 				{
-					lat: busStops[j].stop_lat,
-					lng: busStops[j].stop_lon,
-					title: busStops[j].stop_name,
-					infoWindow: {
-						content: '<p>'+busStops[j].stop_name+'</p><p>Stop '+busStops[j].stop_code+'</p>'+"<button onclick='amendRouteContent("+i+","+busStops[j].route_id_arr+")'>Click me</button>"
+					var busStopRouteID = (busStops[j])["route_id_arr"][k].slice(3,5);
+					
+					var mapRouteButton = '';
+					
+					mapRouteName = "Route " + busRoutesID;
+					var routeID = "\'" + (busStops[j])["route_id_arr"][k] + "\'";
+					mapRouteButton = mapRouteButton + '<li><a onclick="amendRouteContent('+ j + ',' + routeID + ')" href="#RoutesPage" >' + mapRouteName + '</a></li>';
+					if(busRoutesID == busStopRouteID)
+					{
+						var markerObject = map.addMarker(
+						{
+							lat: busStops[j].stop_lat,
+							lng: busStops[j].stop_lon,
+							title: busStops[j].stop_name,
+							infoWindow: {
+								//content: '<p>'+busStops[j].stop_name+'</p><p>Stop '+busStops[j].stop_code+'</p>'+"<button onclick='amendRouteContent("+j+","+busStops[j].route_id_arr+")'>Click me</button>"
+								content: '<p>'+busStops[j].stop_name+'</p><p>Stop '+busStops[j].stop_code+'</p><ul>' + mapRouteButton + '</ul>'
+							}
+						});
 					}
-				});
+					
+				}
 			}
 		});
 
@@ -176,15 +200,25 @@ generateMapContent = function(page) {
 	$mapMarkerOption = $('<li><a href="#" class="ui-btn">' + 'Display All Markers' + '</a></li>');
 	$mapMarkerOption.click( function() {
 		map.removeMarkers();
+		
 		for(var i = 0; i < busStops.length; i++)
 		{
+			var mapRouteButton = '';
+			for(var j = 0; j < (busStops[i])["route_id_arr"].length; j++)
+			{
+				mapRouteName = "Route " + (busStops[i])["route_id_arr"][j].slice(3,5);
+				var routeID = "\'" + (busStops[i])["route_id_arr"][j] + "\'";
+				mapRouteButton = mapRouteButton + '<li><a onclick="amendRouteContent('+ i + ',' + routeID + ')" href="#RoutesPage" >' + mapRouteName + '</a></li>';
+			}
 			var markerObject = map.addMarker(
 			{
 				lat: busStops[i].stop_lat,
 				lng: busStops[i].stop_lon,
 				title: busStops[i].stop_name,
 				infoWindow: {
-					content: '<p>'+busStops[i].stop_name+'</p><p>Stop '+busStops[i].stop_code+'</p>'+"<button onclick='amendRouteContent("+i+","+busStops[i].route_id_arr+")'>Click me</button>"
+					//content: '<p>'+busStops[i].stop_name+'</p><p>Stop '+busStops[i].stop_code+'</p>'+"<button onclick='amendRouteContent("+i+","+busStops[i].route_id_arr+")'>Click me</button>"
+					content: '<p>'+busStops[i].stop_name+'</p><p>Stop '+busStops[i].stop_code+
+					'</p><ul>' + mapRouteButton + '</ul>'
 				}
 			});
 		}
@@ -251,6 +285,7 @@ generateMapContent = function(page) {
 		height: "95%"
 	});
 
+	//default route marker adder
 	for(var i = 0; i < busStops.length; i++)
 	{
 		var mapRouteButton = '';
