@@ -7,11 +7,11 @@ generateSettingsContentStartup = function(page, list) {
 	// manage which page loads first on startup
 	//
 
-	$startupButton = $('<li><a href="#popupStartup" class="ui-btn" data-rel="popup">Start Page</a></li>');
-	$startupPopup = $('<div data-role="popup" id="popupStartup" data-theme="a"></div>');
+	var $startupButton = $('<li><a href="#popupStartup" class="ui-btn" data-rel="popup">Start Page</a></li>');
+	var $startupPopup = $('<div data-role="popup" id="popupStartup" data-theme="a"></div>');
 	// adds a close button to the popup
 	$startupPopup.append('<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>');
-	$startupList = $('<ul data-role="listview" data-inset="true" style="min-width:210px;"data-theme="b"></ul>');
+	var $startupList = $('<ul data-role="listview" data-inset="true" style="min-width:210px;"data-theme="b"></ul>');
 	$startupList.append('<li data-role="divider" data-theme="a">Pages</li>');
 	for(var i = 0; i < menuPageIDs.length; i++) {
 		var $button = $('<li><a class="ui-btn">' + menuPageIDs[i].slice(0, -4) + '</a></li>');
@@ -43,12 +43,12 @@ generateSettingsContentFavorites = function(page, list) {
 	//
 	// manage favorites
 	//
-	$favoritesButton = $('<li><a href="#popupFavorites" class="ui-btn" data-rel="popup">Favorites</a></li>');
-	$favoritesPopup = $('<div data-role="popup" id="popupFavorites"></div>');
+	var $favoritesButton = $('<li><a href="#popupFavorites" class="ui-btn" data-rel="popup">Favorites</a></li>');
+	var $favoritesPopup = $('<div data-role="popup" id="popupFavorites"></div>');
 
 	// adds a close button to the popup
 	$favoritesPopup.append('<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>');
-	$favoritesList = $('<ul id="favSettingsList" data-role="listview" data-inset="true" style="min-width:210px;"data-theme="b"></ul>');
+	var $favoritesList = $('<ul id="favSettingsList" data-role="listview" data-inset="true" style="min-width:210px;"data-theme="b"></ul>');
 	$favoritesList.append('<li data-role="divider" data-theme="a">Favorites</li>');
 
     var updateFavoritesList = function() {
@@ -95,8 +95,8 @@ generateSettingsContentMapStart = function(page, list) {
 	//
 	// manage where the map centers at startup
 	//
-	$mapStartButton = $('<li><a href="#popupMapStart" class="ui-btn" data-rel="popup">Starting Map Location</a></li>');
-	$mapStartPopup = $('<div data-role="popup" id="popupMapStart"><p>This is a completely basic popup, no options set.</p></div>');
+	var $mapStartButton = $('<li><a href="#popupMapStart" class="ui-btn" data-rel="popup">Starting Map Location</a></li>');
+	var $mapStartPopup = $('<div data-role="popup" id="popupMapStart"><p>This is a completely basic popup, no options set.</p></div>');
 
 	page.addContent("body", $mapStartPopup);
 	list.append($mapStartButton);
@@ -106,12 +106,12 @@ generateSettingsContentFontSize = function(page, list) {
 	//
 	// manage font size
 	//
-	$fontSizeButton = $('<li><a href="#popupFontSize" class="ui-btn" data-rel="popup">Font Size</a></li>');
-	$fontSizePopup = $('<div data-role="popup" id="popupFontSize"></div>');
+	var $fontSizeButton = $('<li><a href="#popupFontSize" class="ui-btn" data-rel="popup">Font Size</a></li>');
+	var $fontSizePopup = $('<div data-role="popup" id="popupFontSize"></div>');
 
 	// adds a close button
 	$fontSizePopup.append('<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>');
-	$fontSizeList = $('<ul data-role="listview" data-inset="true" style="min-width:210px;"data-theme="b"></ul>');
+	var $fontSizeList = $('<ul data-role="listview" data-inset="true" style="min-width:210px;"data-theme="b"></ul>');
 	$fontSizeList.append('<li data-role="divider" data-theme="a">Font Size</li>');
 
 	//sets font size in terms of percent

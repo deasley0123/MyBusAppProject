@@ -56,7 +56,7 @@ generateRouteContent = function(page) {
 
 	// modify buttons
 	$fatCollapsible.append("<H4>Show Future Arrival Times");
-	$fatList = $('<ul data-role="listview" data-inset="false" style="min-width:210px;" data-theme="a"></ul>');
+	var $fatList = $('<ul data-role="listview" data-inset="false" style="min-width:210px;" data-theme="a"></ul>');
 
 	/*TEMP ARRAY*/	var times = ["12:20 pm","12:40 pm","1:00 pm","1:20 pm","1:40 pm","2:00 pm"];	/*TEMP ARRAY*/
 
@@ -130,13 +130,13 @@ generateMapContent = function(page) {
     page.addContent("body", '<div id="map"></div>');
     loadMap();
 
-	//modified navbar to include additional options for markers/favorites
-	$navbarMap = $('<div data-role="navbar"></div>');
+	// Modify navbar to include additional options for markers
+	var $navbarMap = $('<div data-role="navbar"></div>');
 	$navbarMap.append('<ul><li><a href="#popupMapMarkers" class="ui-btn" data-rel="popup">Map Marker Options</a></li></ul>'); 
 	page.addContent("header", $navbarMap);
 
-    //create Popup
-	$mapMarkersPopup = $('<div data-role="popup" id="popupMapMarkers" data-theme="a"></div>');
+    // Create Popup
+	var $mapMarkersPopup = $('<div data-role="popup" id="popupMapMarkers" data-theme="a"></div>');
     
     // Create list and append to popup
 	$mapMarkersPopup.append(createList());
@@ -158,7 +158,7 @@ generateMapContent = function(page) {
 generateSettingsContent = function(page) {
 
 	page.addContent("header","<h1>Settings</h1>");
-	$buttonSettingsList = $('<ul data-role="listview" data-inset="true" style="min-width:210px;"data-theme="a"></ul>');
+	var $buttonSettingsList = $('<ul data-role="listview" data-inset="true" style="min-width:210px;"data-theme="a"></ul>');
 
 	generateSettingsContentStartup(page, $buttonSettingsList);
 	generateSettingsContentFavorites(page, $buttonSettingsList);

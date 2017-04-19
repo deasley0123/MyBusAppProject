@@ -127,7 +127,7 @@ loadAllMarkers = function() {
 		var mapRouteButton = '';
 		for(var j = 0; j < (busStops[i])["route_id_arr"].length; j++)
 		{
-			mapRouteName = "Route " + (busStops[i])["route_id_arr"][j].slice(3,5);
+			var mapRouteName = "Route " + (busStops[i])["route_id_arr"][j].slice(3,5);
 			var routeID = "\'" + (busStops[i])["route_id_arr"][j] + "\'";
 			mapRouteButton = mapRouteButton + '<li><a class="ui-btn" onclick="amendRouteContent('+ i + ',' + routeID + ')" href="#RoutesPage" >' + mapRouteName + '</a></li>';
 		}

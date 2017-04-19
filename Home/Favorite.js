@@ -12,10 +12,10 @@
 //
 function Favorite(){
 
-    $collapsibleSet = $('<div class="ui-collapsible-set"></div>');
-	$collapsible = $('<div data-role="collapsible"></div>');
+    var $collapsibleSet = $('<div class="ui-collapsible-set"></div>');
+	var $collapsible = $('<div data-role="collapsible"></div>');
 	$collapsible.append("<h4>Favorites</h4>");
-	$list = $('<ul id="favList" data-role="listview"></ul>');
+	var $list = $('<ul id="favList" data-role="listview"></ul>');
 
     var favArray = currentSettings.getFavorites(); // row 0 - element, row 1 - pageID
     var i, favElement, favID, pageID;

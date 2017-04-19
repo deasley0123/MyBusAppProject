@@ -91,7 +91,7 @@ updateHistory = function(pageName) {
 			var newLength = pageHistory.length()+1; // avoiding type coercion
 
 			// create new back button
-			$backButton = $('<a href="#' + pageHistory.peek() + '" id="BackButton' + newLength + '" data-icon="back" class="ui-btn-right ui-link ui-btn ui-icon-back ui-btn-icon-left ui-shadow ui-corner-all" data-role="button" role="button">Back</a>');
+			var $backButton = $('<a href="#' + pageHistory.peek() + '" id="BackButton' + newLength + '" data-icon="back" class="ui-btn-right ui-link ui-btn ui-icon-back ui-btn-icon-left ui-shadow ui-corner-all" data-role="button" role="button">Back</a>');
 			$backButton.click( function() {
 
 				// remove current page
