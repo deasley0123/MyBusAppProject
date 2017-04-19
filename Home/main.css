@@ -4,45 +4,83 @@
 }
 
 .welcome {
+    
 	text-align: center;
 }
 /*overrides jquery mobile presets*/
 .ui-btn{
-  opacity : 0.6;
-	font-size: 100%;
+    background-color: #85898A;
+    font-size: 100%;
 }
 
 .ui-collapsible-heading-toggle{
-  background-color: rgba(202,225,255,0.6);
-  overflow:auto;
+    background-color: rgba(202,225,255,0.6);
+    overflow:auto;
 }
 .ui-content{
-  background:url('successpage.jpg') no-repeat center center fixed;
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  margin: 0;
- padding: 0;
+    text-shadow:0 0 0 !important; 
+    background-color:#C7D0D4;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    margin: 0;
+    padding: 0;
 }
 
 .ui-panel{
-  background:url('panel.jpg');
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  margin: 0;
- padding: 0;
+   
+    background-color:#D9D9D9;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    margin: 0;
+    padding: 0;
 }
 
-#RoutesPageHeader{
-  background-color: lightblue;
+.credits {
+    margin-left: 1em;
+    color: black;
+    
+}
+
+#HomePageFooter{
+    height: 4.7em;
+    background-color:#ABB9C4;
 }
 
 #RoutesPageFooter{
-  background-color: lightblue;
+    height: 4.7em;
+    background-color: #ABB9C4;
 }
+
+#MapPageFooter{
+    height: 4.7em;
+    background-color: #ABB9C4;
+}
+
+#SettingsPageFooter{
+    height: 4.7em;
+    background-color: #ABB9C4;
+}
+
+#HomePageHeader{
+    background-color: #ABB9C4;
+}
+
+#RoutesPageHeader{
+    background-color: #ABB9C4;
+}
+
+#MapPageHeader{
+    background-color: #ABB9C4;
+}
+
+#SettingsPageHeader{
+    background-color: #ABB9C4;
+}
+
 .ui-header  .ui-btn{
 	font-size: 78.125%;
 }
@@ -53,6 +91,7 @@
 
 .disclaimer {
 	text-align: center;
+    color:white;
 }
 
 /*
@@ -60,8 +99,10 @@
 */
 #map{
   display: block;
-  margin-left: 2.5%;
-  margin-top: 2.5%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1.25%;
+  margin-bottom: auto;
   -moz-box-shadow: 0px 5px 20px #ccc;
   -webkit-box-shadow: 0px 5px 20px #ccc;
   box-shadow: 0px 5px 20px #ccc;

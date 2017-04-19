@@ -31,7 +31,7 @@ generateHomeContent = function(page) {
 	page.addContent("header",'<div data-role="navbar"></div>');
 	page.addContent("body",'<p class="welcome">Welcome to MyBus</p>');
 	page.addContent("body",'<p class="disclaimer" style="text-align:center">*All times are approximate. Please arrive 5 minutes early.</p>');
-	page.addContent("footer","<h1>An app developed by David Easley, Ryan Rodriguez, Josh Wu and Chen Long</h1>");
+	page.addContent("footer","<p class='credits'>An app developed by David Easley, Ryan Rodriguez, Josh Wu and Chen Long</p>");
 
 }
 
@@ -88,7 +88,7 @@ generateRouteContent = function(page) {
     page.addContent("body", $favButton);
 
 	// Footer
-	page.addContent("footer","<h1>An app developed by David Easley, Ryan Rodriguez, Josh Wu and Chen Long</h1>");
+	page.addContent("footer","<p class='credits'>An app developed by David Easley, Ryan Rodriguez, Josh Wu and Chen Long</p>");
 
 
 
@@ -208,7 +208,8 @@ generateMapContent = function(page) {
 			{
 				mapRouteName = "Route " + (busStops[i])["route_id_arr"][j].slice(3,5);
 				var routeID = "\'" + (busStops[i])["route_id_arr"][j] + "\'";
-				mapRouteButton = mapRouteButton + '<li><a onclick="amendRouteContent('+ i + ',' + routeID + ')" href="#RoutesPage" >' + mapRouteName + '</a></li>';
+				mapRouteButton = mapRouteButton + '<li><a class="ui-btn" onclick="amendRouteContent('+ i + ',' + routeID + ')" href="#RoutesPage">' + mapRouteName + '</a></li>';
+                console.log(mapRouteButton);
 			}
 			var markerObject = map.addMarker(
 			{
@@ -216,7 +217,6 @@ generateMapContent = function(page) {
 				lng: busStops[i].stop_lon,
 				title: busStops[i].stop_name,
 				infoWindow: {
-					//content: '<p>'+busStops[i].stop_name+'</p><p>Stop '+busStops[i].stop_code+'</p>'+"<button onclick='amendRouteContent("+i+","+busStops[i].route_id_arr+")'>Click me</button>"
 					content: '<p>'+busStops[i].stop_name+'</p><p>Stop '+busStops[i].stop_code+
 					'</p><ul>' + mapRouteButton + '</ul>'
 				}
@@ -293,7 +293,7 @@ generateMapContent = function(page) {
 		{
 			mapRouteName = "Route " + (busStops[i])["route_id_arr"][j].slice(3,5);
 			var routeID = "\'" + (busStops[i])["route_id_arr"][j] + "\'";
-			mapRouteButton = mapRouteButton + '<li><a onclick="amendRouteContent('+ i + ',' + routeID + ')" href="#RoutesPage" >' + mapRouteName + '</a></li>';
+			mapRouteButton = mapRouteButton + '<li><a class="ui-btn" onclick="amendRouteContent('+ i + ',' + routeID + ')" href="#RoutesPage" >' + mapRouteName + '</a></li>';
 		}
 		var markerObject = map.addMarker(
 		{
@@ -313,7 +313,7 @@ generateMapContent = function(page) {
 	});
 
 	// Footer
-	page.addContent("footer","<h1>An app developed by David Easley, Ryan Rodriguez, Josh Wu and Chen Long</h1>");
+	page.addContent("footer","<p class='credits'>An app developed by David Easley, Ryan Rodriguez, Josh Wu and Chen Long</p>");
 
 }
 
@@ -330,7 +330,7 @@ generateSettingsContent = function(page) {
 	generateSettingsContentFontSize(page, $buttonSettingsList);
 
 	page.addContent("body", $buttonSettingsList);
-	page.addContent("footer","<h1>An app developed by David Easley, Ryan Rodriguez, Josh Wu and Chen Long</h1>");
+	page.addContent("footer","<p class='credits'>An app developed by David Easley, Ryan Rodriguez, Josh Wu and Chen Long</p>");
 
 }
 

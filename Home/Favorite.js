@@ -36,7 +36,7 @@ function Favorite(){
 	$.fn.exists = function () {
     	return this.length !== 0;
 	}
-	console.log($("#panelList").exists());
+	//console.log($("#panelList").exists());
 	$("#panelList").append($collapsibleSet);
 }
 
