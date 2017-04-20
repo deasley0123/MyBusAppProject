@@ -146,7 +146,7 @@ generateMapContent = function(page) {
     loadPopup();
     
     // Load map markers
-    loadAllMarkers();
+    loadDisplayedMarkers();
     
 	// Footer
 	page.addContent("footer","<p class='credits'>An app developed by David Easley, Ryan Rodriguez, Josh Wu and Chen Long</p>");

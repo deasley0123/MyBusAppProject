@@ -23,6 +23,12 @@ var map;
 //	Global Map Marker Variable
 var markers = [];
 
+// variable for displaying routes
+var displayedRoutes = [];
+for(var i = 0; i < busRoutes.length; i++) {
+    displayedRoutes.push([busRoutes[i].route_id,true]);
+}
+
 // moved to outside function for use with panel
 var menuPageIDs = ["HomePage", "RoutesPage", "MapPage", "SettingsPage"]; // array of menu page IDs -- In the future this list can be retrieved from config.txt
 var menuPages = []; // array of the menu pages
