@@ -96,8 +96,34 @@ generateSettingsContentMapStart = function(page, list) {
 	// manage where the map centers at startup
 	//
 	var $mapStartButton = $('<li><a href="#popupMapStart" class="ui-btn" data-rel="popup">Starting Map Location</a></li>');
-	var $mapStartPopup = $('<div data-role="popup" id="popupMapStart"><p>This is a completely basic popup, no options set.</p></div>');
-
+	var $mapStartPopup = $('<div data-role="popup" id="popupMapStart"></div>');
+    $mapStartPopup.append('<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>');
+    
+	var $mapStartList = $('<ul data-role="listview" data-inset="true" style="min-width:210px;"data-theme="b"></ul>');
+	$mapStartList.append('<li data-role="divider" data-theme="a">Starting Map Location</li>');
+    
+    // button for setting starting map location to current center of map
+    var $setCenter = $('<li><a class="ui-btn">Set to Current Center Of Map</a></li>');
+    $setCenter.click( function() {
+        var center = map.getCenter();
+        map.setCenter(center.lat(), center.lng());
+        currentSettings.setMapCenter(center.lat(), center.lng());
+        $mapStartPopup.popup( "close" );
+        alert("New Starting Map Location Set");
+    } );
+    $mapStartList.append($setCenter);
+    
+    // button for reseting map location to default center
+    var $resetButton = $('<li><a class="ui-btn">Reset to Default</a></li>');
+    $resetButton.click( function() {   
+        currentSettings.setMapCenter(38.955028, -95.262750);
+        $mapStartPopup.popup( "close" );
+        alert("Reset Starting Map Location to Default");
+    } );
+    $mapStartList.append($resetButton);
+    
+    $mapStartPopup.append($mapStartList);
+    
 	page.addContent("body", $mapStartPopup);
 	list.append($mapStartButton);
 }

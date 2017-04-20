@@ -15,14 +15,30 @@ function Settings() {
 	var startPage = 0;
 	var fontSize = 100;
     var favorites = []; // first col is favElement, second col is pageID
+    var mapLat = 38.955028;
+    var mapLng = -95.262750;
 	
-    // initialize to saved settings if available
-	if (storageAvailable('localStorage')) {
+    // saving defaults if none previously set
+    if( localStorage.getItem('favorites') == null ) {
+        if( parseInt(localStorage.getItem('startPage'), 10) == null ) {
+            localStorage.setItem('startPage', startPage);
+        }
+        if( fontSize = localStorage.getItem('fontSize') == null ) { 
+            localStorage.setItem('fontSize', fontSize);
+        }
+        localStorage.setItem( 'favorites', JSON.stringify(favorites) );
+        if( localStorage.getItem('mapLat') == null ) {
+            localStorage.setItem('mapLat', mapLat);
+            localStorage.setItem('mapLng', mapLng);  
+        }
+    }        
+    // otherwise initialize to saved settings if possible
+	else if ( storageAvailable('localStorage') ) {
 		startPage = parseInt(localStorage.getItem('startPage'), 10);
 		fontSize = localStorage.getItem('fontSize');
-        if(localStorage.getItem('favorites') != null) {
-            favorites = JSON.parse( localStorage.getItem('favorites') );
-        }
+        favorites = JSON.parse( localStorage.getItem('favorites') );
+        mapLat = parseFloat(localStorage.getItem('mapLat'), 10);
+        mapLng = parseFloat(localStorage.getItem('mapLng'), 10);
 	}
 	
 	this.setStartPage = function(page) {
@@ -59,6 +75,20 @@ function Settings() {
         if (storageAvailable('localStorage')) {
 			localStorage.setItem( 'favorites', JSON.stringify(favorites) );
 		}
+    }
+    
+    this.getMapCenter = function() {
+        return [mapLat, mapLng];
+    }
+    
+    this.setMapCenter = function(lat, lng) {
+        mapLat = lat;
+        mapLng = lng;
+        if (storageAvailable('localStorage')) {
+            localStorage.setItem('mapLat', mapLat);
+            localStorage.setItem('mapLng', mapLng);
+		}
+        
     }
     
     this.getFavorites = function() {

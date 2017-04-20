@@ -77,10 +77,11 @@ loadPopup = function() {
 // Load map
 loadMap = function() {
     
+    var center = currentSettings.getMapCenter();
 	map = new GMaps({
 		el: "#map",
-		lat: 38.955028,
-		lng: -95.262750,
+        lat: center[0],
+        lng: center[1],
 		zoomControl : true,
 		zoomControlOpt: {
 			style : "SMALL",
@@ -93,7 +94,8 @@ loadMap = function() {
 		width: "95%",
 		height: "95%"
 	});
-        // refresh map on page transition
+ 
+    // refresh map on page transition
 	$(document).on( "pageshow", function() {
 		map.refresh();
 	});
@@ -104,7 +106,6 @@ loadMap = function() {
 loadDisplayedMarkers = function() {
 	
     map.removeMarkers();
-    console.log( JSON.stringify(displayedRoutes) );
     
     // check if stop has a route to be displayed
     // first loop - iterate through stops
@@ -128,25 +129,32 @@ loadDisplayedMarkers = function() {
         }
         // display this stop marker
         if(shouldDisplay) {  
-            var mapRouteButton = '';
-            for(var j = 0; j < (busStops[i])["route_id_arr"].length; j++)
-            {
-                var mapRouteName = "Route " + (busStops[i])["route_id_arr"][j].slice(3,5);
-                var routeID = "\'" + (busStops[i])["route_id_arr"][j] + "\'";
-                mapRouteButton = mapRouteButton + '<li><a class="ui-btn" onclick="amendRouteContent('+ i + ',' + routeID + ')" href="#RoutesPage" >' + mapRouteName + '</a></li>';
-            }
-            var markerObject = map.addMarker( {
-                lat: busStops[i].stop_lat,
-                lng: busStops[i].stop_lon,
-                title: busStops[i].stop_name,
-                infoWindow: {
-                    content: '<p>'+busStops[i].stop_name+'</p><p>Stop '+busStops[i].stop_code+
-                    '</p><ul>' + mapRouteButton + '</ul>'
-                }
-            } );
-        } // End IF
+            loadStopMarker(i);
+        } 
     } // End First Loops
 }
+
+
+loadStopMarker = function(index) {
+    
+    var mapRouteButton = '';
+    for(var j = 0; j < (busStops[index])["route_id_arr"].length; j++)
+    {
+        var mapRouteName = "Route " + (busStops[index])["route_id_arr"][j].slice(3,5);
+        var routeID = "\'" + (busStops[index])["route_id_arr"][j] + "\'";
+        mapRouteButton = mapRouteButton + '<li><a class="ui-btn" onclick="amendRouteContent('+ i + ',' + routeID + ')" href="#RoutesPage" >' + mapRouteName + '</a></li>';
+    }
+    var markerObject = map.addMarker( {
+        lat: busStops[index].stop_lat,
+        lng: busStops[index].stop_lon,
+        title: busStops[index].stop_name,
+        infoWindow: {
+            content: '<p>'+busStops[index].stop_name+'</p><p>Stop '+busStops[index].stop_code+
+            '</p><ul>' + mapRouteButton + '</ul>'
+        }
+    } );
+}
+
 
 // load all map markers
 loadAllMarkers = function() {
@@ -154,7 +162,9 @@ loadAllMarkers = function() {
     for(var i = 0; i < busRoutes.length; i++) {
         displayedRoutes.push([busRoutes[i].route_id,true]);
     }
-    loadDisplayedMarkers();
+    for(var i = 0; i < busStops.length; i++) {
+        loadStopMarker(i);
+    }
 }
 
 removeAllMarkers = function() { 
