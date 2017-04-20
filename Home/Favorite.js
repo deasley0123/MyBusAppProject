@@ -32,9 +32,12 @@ function Favorite(){
         favID = favElement.replace(/\s+/g, '');
         pageID = favArray[i][1];
         $favButton = $("<li><a id='" + favID + "' class='ui-btn' href='#" + pageID + "' data-transition='slide'>"+favElement+"</a></li>");
-        $favButton.click( function() {
-            amendRouteContent(stopNum,routeID);
-        });
+        var goToRoutesPage = function(stopNum, routeID) {
+            return function() {
+                amendRouteContent(stopNum, routeID);
+            };
+        };
+        $favButton.click( goToRoutesPage(stopNum, routeID) );
         $list.append($favButton);
     }
     if(favArray.length == 0) {
