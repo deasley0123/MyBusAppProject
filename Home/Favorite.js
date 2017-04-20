@@ -21,10 +21,21 @@ function Favorite(){
     var i, favElement, favID, pageID;
 
     for(i = 0; i < favArray.length; i++) {
+        for(var j = 0; j < busStops.length; j++){
+            if(favArray[i][3] == busStops[j].stop_code){
+                var stopNum = j;
+                break;
+            }
+        }
+        var routeID = "rt_" + favArray[i][2];
         favElement = favArray[i][0];
-        favID = "fav" + favArray[i][0];
+        favID = favElement.replace(/\s+/g, '');
         pageID = favArray[i][1];
-        $list.append("<li><a id='" + favID + "' class='ui-btn' href='#" + pageID + "' data-transition='slide'>"+favElement+"</a></li>");
+        $favButton = $("<li><a id='" + favID + "' class='ui-btn' href='#" + pageID + "' data-transition='slide'>"+favElement+"</a></li>");
+        $favButton.click( function() {
+            amendRouteContent(stopNum,routeID);
+        });
+        $list.append($favButton);
     }
     if(favArray.length == 0) {
         $list.append("<p id='noFavText'>No Favorites Added</p>");
@@ -36,13 +47,16 @@ function Favorite(){
 	$.fn.exists = function () {
     	return this.length !== 0;
 	}
-	//console.log($("#panelList").exists());
+	console.log($("#panelList").exists());
 	$("#panelList").append($collapsibleSet);
 }
 
 // add an element to Favorites list if it doesn't exist yet.
 // return true if successful
-Favorite.prototype.addElement = function(favElement, pageID){
+// bus route and busStop are the number associated with them (not their index in their respective array)
+Favorite.prototype.addElement = function(favElement, pageID, busRoute, busStop){
+
+    console.log(favElement + " " + pageID + " " + busRoute + " " + busStop);
 
     var i;
     var isAlreadyFavorite = 0;
@@ -57,14 +71,31 @@ Favorite.prototype.addElement = function(favElement, pageID){
             break;
         }
     }
+    // check if valid busRoute/busStop
+    if(   (busRoute == 0) || (busStop == 0)   ) {
+        isAlreadyFavorite = 1;
+    }
+    
     // add to favorite and return true
     if(!isAlreadyFavorite) {
         if( favArray.length == 0 ) {
             $("#noFavText").remove();
         }
-        currentSettings.addFavorite([favElement, pageID]);
-        var favID = "fav" + favElement;
-        $("#favList").append("<li><a id='" + favID + "' class='ui-btn' href='#" + pageID + "' data-transition='slide'>"+favElement+"</a></li>");
+        currentSettings.addFavorite([favElement, pageID, busRoute, busStop]);
+        var favID = favElement.replace(/\s+/g, '');
+        console.log(favID);
+        $favButton = $("<li><a id='" + favID + "' class='ui-btn' href='#" + pageID + "' data-transition='slide'>"+favElement+"</a></li>");
+        for(var i = 0; i < busStops.length; i++){
+            if(busStop == busStops[i].stop_code){
+                var stopNum = i;
+                break;
+            }
+        }
+        var routeID = "rt_" + busRoute;
+        $favButton.click( function() {
+            amendRouteContent(stopNum, routeID);
+        });
+        $("#favList").append($favButton);
     }
     // return false with no changes if already a favorite
     return !isAlreadyFavorite;
@@ -88,8 +119,8 @@ Favorite.prototype.delElement = function(favElement){
     // return true and remove if favorite exists
     if(isFavorite) {
         currentSettings.delFavorite(favElement);
-        var favID = "#fav" + favElement;
-        $(favID).remove();
+        var favID = favElement.replace(/\s+/g, '');
+        $("#" + favID).remove();
         if(favArray.length == 0) {
             $("#favList").append("<p id='noFavText'>No Favorites Added</p>");
         }

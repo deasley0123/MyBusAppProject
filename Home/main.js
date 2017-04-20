@@ -29,6 +29,14 @@ for(var i = 0; i < busRoutes.length; i++) {
     displayedRoutes.push([busRoutes[i].route_id,true]);
 }
 
+//global favorites variable
+var favorites;
+
+// global variable to track current bus route/stop
+var bus = {};
+bus.route = 0;
+bus.stop = 0;
+
 // moved to outside function for use with panel
 var menuPageIDs = ["HomePage", "RoutesPage", "MapPage", "SettingsPage"]; // array of menu page IDs -- In the future this list can be retrieved from config.txt
 var menuPages = []; // array of the menu pages
@@ -136,7 +144,7 @@ $(document).on("pagebeforeshow ",function(event){
 $(document).one('pagebeforecreate', function () {
 
 	$.mobile.pageContainer.prepend($panel);
-	var favorites = new Favorite();
+	favorites = new Favorite();
 	// Enhances all children of all elements in the set of matched elements.
 	$panel.panel().enhanceWithin();
 });

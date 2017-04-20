@@ -142,7 +142,7 @@ loadStopMarker = function(index) {
     {
         var mapRouteName = "Route " + (busStops[index])["route_id_arr"][j].slice(3,5);
         var routeID = "\'" + (busStops[index])["route_id_arr"][j] + "\'";
-        mapRouteButton = mapRouteButton + '<li><a class="ui-btn" onclick="amendRouteContent('+ i + ',' + routeID + ')" href="#RoutesPage" >' + mapRouteName + '</a></li>';
+        mapRouteButton = mapRouteButton + '<li><a class="ui-btn" onclick="amendRouteContent('+ index + ',' + routeID + ')" href="#RoutesPage" >' + mapRouteName + '</a></li>';
     }
     var markerObject = map.addMarker( {
         lat: busStops[index].stop_lat,

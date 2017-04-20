@@ -103,7 +103,7 @@ generateSettingsContentMapStart = function(page, list) {
 	$mapStartList.append('<li data-role="divider" data-theme="a">Starting Map Location</li>');
     
     // button for setting starting map location to current center of map
-    var $setCenter = $('<li><a class="ui-btn">Set to Current Center Of Map</a></li>');
+    var $setCenter = $('<li><a class="ui-btn">Set to Current Center of Map</a></li>');
     $setCenter.click( function() {
         var center = map.getCenter();
         map.setCenter(center.lat(), center.lng());

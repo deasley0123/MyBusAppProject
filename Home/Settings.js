@@ -33,7 +33,7 @@ function Settings() {
         }
     }        
     // otherwise initialize to saved settings if possible
-	else if ( storageAvailable('localStorage') ) {
+	if ( storageAvailable('localStorage') ) {
 		startPage = parseInt(localStorage.getItem('startPage'), 10);
 		fontSize = localStorage.getItem('fontSize');
         favorites = JSON.parse( localStorage.getItem('favorites') );
@@ -59,6 +59,7 @@ function Settings() {
 	};
     
     this.addFavorite = function(favElementArr) {
+        console.log(JSON.stringify(favElementArr));
         favorites.push(favElementArr);
         if (storageAvailable('localStorage')) {
 			localStorage.setItem( 'favorites', JSON.stringify(favorites) );

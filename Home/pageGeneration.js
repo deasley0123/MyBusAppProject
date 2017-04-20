@@ -70,10 +70,9 @@ generateRouteContent = function(page) {
 
     // Favorite Button
     var $favButton = $('<a href="#popupFavPage" class="ui-btn" data-rel="popup">Favorite Route/Stop</a>');
-    //var $favPopup = $('<div data-role="popup" id="popupFavPage" data-theme="a"></div>');
-    //$favPopup.append('<p>Added to Favorites</p>');
     $favButton.click( function() {
-        var success = favorites.addElement("Routes", "RoutesPage");
+        var favName = "Route " + bus.route + " Stop " + bus.stop;
+        var success = favorites.addElement(favName, "RoutesPage", bus.route, bus.stop);
         if(success) {
             alert("Added to Favorites");
         }
@@ -119,6 +118,10 @@ amendRouteContent =  function(stopArrayNum, routeID){
 	menuPages[1].addContentBefore("body",'<p class="routesContent">Stop ' + stopNum + ': ' + stopName + '</p>');
 	menuPages[1].addContentBefore("body",'<h4 class="routesContent">' + routeName + '</h4>');
 
+    // update current bus Route and Stop
+    bus.route = routeID.slice(3,5);
+    bus.stop = stopNum;
+    
     updateHistory(menuPageIDs[1])();
 }
 
