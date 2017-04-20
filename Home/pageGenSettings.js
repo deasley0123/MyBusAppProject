@@ -58,7 +58,6 @@ generateSettingsContentFavorites = function(page, list) {
 
 			var $button = $('<li class="favListBtn"><a class="ui-btn">Remove \"' + favArray[i][0] + '\"</a></li>');
             var favElement = favArray[i][0];
-            console.log("Displaying " + favElement);
             
             // remove the favorite of the given index
 			var removeFavorite = function(favIndex) {
@@ -66,7 +65,6 @@ generateSettingsContentFavorites = function(page, list) {
                     var favArray = currentSettings.getFavorites();
                     var favElement = favArray[favIndex][0];
 					// remove favorite
-                    console.log("Removing " + favElement);
 					favorites.delElement(favElement);
 
 					// close popup

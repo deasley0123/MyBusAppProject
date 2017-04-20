@@ -38,7 +38,7 @@ function Favorite(){
         $list.append($favButton);
     }
     if(favArray.length == 0) {
-        $list.append("<p id='noFavText'>No Favorites Added</p>");
+        $list.append('<h4 style="text-align: center;" id="noFavText">No Favorites Added</h4>');
     }
 
 	$collapsible.append($list);
@@ -47,7 +47,7 @@ function Favorite(){
 	$.fn.exists = function () {
     	return this.length !== 0;
 	}
-	console.log($("#panelList").exists());
+	//console.log($("#panelList").exists());
 	$("#panelList").append($collapsibleSet);
 }
 
@@ -122,7 +122,7 @@ Favorite.prototype.delElement = function(favElement){
         var favID = favElement.replace(/\s+/g, '');
         $("#" + favID).remove();
         if(favArray.length == 0) {
-            $("#favList").append("<p id='noFavText'>No Favorites Added</p>");
+            $("#favList").append("<h4 id='noFavText'>No Favorites Added</h4>");
         }
     }
     // return false if favorite doesn't exist

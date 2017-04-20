@@ -9,12 +9,20 @@
 }
 /*overrides jquery mobile presets*/
 .ui-btn{
-    background-color: #85898A;
     font-size: 100%;
 }
 
+.ui-popup{
+    text-shadow:0 0 0 !important;
+    background-color:#eef1f3;
+}
+
+.ui-controlgroup {
+    margin: 0;
+}
+
 .ui-collapsible-heading-toggle{
-    background-color: rgba(202,225,255,0.6);
+    background-color: #eef1f3;
     overflow:auto;
 }
 .ui-content{
@@ -29,8 +37,8 @@
 }
 
 .ui-panel{
-   
-    background-color:#D9D9D9;
+    text-shadow:0 0 0 !important;
+    background-color:#adb7c1;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -42,42 +50,55 @@
 .credits {
     margin-left: 1em;
     color: black;
+    font-size: 90%;
+}
+
+.routesContent {
     
+    margin-left: 1%;
 }
 
 #HomePageFooter{
+    text-shadow:0 0 0 !important;
     height: 4.7em;
     background-color:#ABB9C4;
 }
 
 #RoutesPageFooter{
+    text-shadow:0 0 0 !important;
     height: 4.7em;
     background-color: #ABB9C4;
 }
 
 #MapPageFooter{
+    text-shadow:0 0 0 !important;
     height: 4.7em;
     background-color: #ABB9C4;
 }
 
 #SettingsPageFooter{
+    text-shadow:0 0 0 !important;
     height: 4.7em;
     background-color: #ABB9C4;
 }
 
 #HomePageHeader{
+    text-shadow:0 0 0 !important;
     background-color: #ABB9C4;
 }
 
 #RoutesPageHeader{
+    text-shadow:0 0 0 !important;
     background-color: #ABB9C4;
 }
 
 #MapPageHeader{
+    text-shadow:0 0 0 !important;
     background-color: #ABB9C4;
 }
 
 #SettingsPageHeader{
+    text-shadow:0 0 0 !important;
     background-color: #ABB9C4;
 }
 
@@ -85,9 +106,18 @@
 	font-size: 78.125%;
 }
 
+/* controls style for all buttons */
+.ui-page-theme-a .ui-btn, html .ui-bar-a .ui-btn, html .ui-body-a .ui-btn, html body .ui-group-theme-a .ui-btn, 
+html head+body .ui-btn.ui-btn-a, .ui-page-theme-a .ui-btn:visited, html .ui-bar-a .ui-btn:visited, 
+html .ui-body-a .ui-btn:visited, html body .ui-group-theme-a .ui-btn:visited, html head+body .ui-btn.ui-btn-a:visited {
+    
+    background-color: #eef1f3 ;
+}
+
 #SettingsPageBody{
     padding: 0;
 }​
+
 
 .disclaimer {
 	text-align: center;

@@ -135,7 +135,7 @@ generateMapContent = function(page) {
 
 	// Modify navbar to include additional options for markers
 	var $navbarMap = $('<div data-role="navbar"></div>');
-	$navbarMap.append('<ul><li><a href="#popupMapMarkers" class="ui-btn" data-rel="popup">Map Marker Options</a></li></ul>'); 
+	$navbarMap.append('<ul><li><a href="#popupMapMarkers" class="ui-btn" data-rel="popup">Display Route Options</a></li></ul>'); 
 	page.addContent("header", $navbarMap);
 
     // Create Popup

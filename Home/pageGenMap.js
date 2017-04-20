@@ -6,7 +6,7 @@
 // return the option
 createMapMarkerOption = function(index) {
     
-    var $mapMarkerOption = $('<li><a href="#" class="ui-btn">' + busRoutes[index].route_num + ' - ' + busRoutes[index].route_name + '</a></li>');
+    var $mapMarkerOption = $('<label><input class="markerRoute" type="checkbox" data-theme="b"/>' + busRoutes[index].route_num + ' - ' + busRoutes[index].route_name + '</label>');
     
     var busRouteID = busRoutes[index].route_id;
     //
@@ -26,6 +26,7 @@ createMapMarkerOption = function(index) {
                 displayedRoutes[i][1] = !displayedRoutes[i][1]; // toggle true/false
             }
         }
+        //console.log(JSON.stringify(displayedRoutes.length));
         loadDisplayedMarkers();
         
     });
@@ -36,8 +37,9 @@ createMapMarkerOption = function(index) {
 createList = function() {
     
 	// apply formatting to popup element
-	var $mapMarkersList = $('<ul data-role="listview" data-inset="true" style="min-width:210px;"data-theme="b"></ul>');
-	$mapMarkersList.append('<li data-role="divider" data-theme="a">Routes</li>');
+	//var $mapMarkersList = $('<ul data-role="listview" data-inset="true" style="min-width:210px;"data-theme="b"></ul>');
+    var $mapMarkersList = $('<div id="checkboxList" data-role="controlgroup"></div>');
+	$mapMarkersList.append('<legend style="margin: auto;"><h4 data-theme="a">Display Route Options</h4>');
 
 	// add button to the popup list which displays/disables a Route's markers(popup from the Navbar)
 	for(var i = 0; i < busRoutes.length; i++)
@@ -46,12 +48,12 @@ createList = function() {
 	}
 
 	// display all markers from the popup button
-	var $mapMarkerOption = $('<li><a href="#" class="ui-btn">' + 'Display All Markers' + '</a></li>');
+	var $mapMarkerOption = $('<a class="ui-btn allMarkers">Display All Routes</a>');
 	$mapMarkerOption.click( loadAllMarkers );
 	$mapMarkersList.append($mapMarkerOption);
 
 	// hide all markers from the popup button
-	$mapMarkerOption = $('<li><a href="#" class="ui-btn">' + 'Remove All Markers' + '</a></li>');
+	$mapMarkerOption = $('<a class="ui-btn allMarkers">Remove All Routes</a>');
 	$mapMarkerOption.click( removeAllMarkers );
 	$mapMarkersList.append($mapMarkerOption);
     
@@ -72,6 +74,8 @@ loadPopup = function() {
 			$('#popupMapMarkers').css('max-height', maxHeight + 'px');
 		}
 	});
+    // check all of the checkboxes in the popup
+    $(".markerRoute").prop( "checked", true );
 }
 
 // Load map
@@ -159,12 +163,15 @@ loadStopMarker = function(index) {
 // load all map markers
 loadAllMarkers = function() {
   
-    for(var i = 0; i < busRoutes.length; i++) {
-        displayedRoutes.push([busRoutes[i].route_id,true]);
+    // set all routes to be displayed
+    for (var i = 0; i < displayedRoutes.length; i++) {
+        displayedRoutes[i][1] = true;
     }
     for(var i = 0; i < busStops.length; i++) {
         loadStopMarker(i);
     }
+    //console.log($(".markerRoute").exists());
+    $(':checkbox').prop("checked", true).checkboxradio("refresh");
 }
 
 removeAllMarkers = function() { 
@@ -174,4 +181,6 @@ removeAllMarkers = function() {
         displayedRoutes[i][1] = false;
     }
     map.removeMarkers(); 
+    //console.log($(".markerRoute").exists());
+    $(':checkbox').prop("checked", false).checkboxradio("refresh");
 }

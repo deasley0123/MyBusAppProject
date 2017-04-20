@@ -81,7 +81,7 @@ $(document).ready(onPageLoad);
 //	external panel template
 //
 var $panel = $('<div data-role="panel" id="myPanel" data-position="left" data-display="reveal" data-theme="a"></div>');
-$panel.append('<h2>Menu</h2>');
+$panel.append('<h2 style="text-align: center;">Menu</h2>');
 $buttonPanelList = $('<ul id="panelList" data-role="listview" data-inset="true" style="min-width:210px;"data-theme="a"></ul>');
 
 //
