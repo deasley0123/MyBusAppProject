@@ -56,18 +56,24 @@ generateSettingsContentFavorites = function(page, list) {
         var favArray = currentSettings.getFavorites();
 		for(var i = 0; i < favArray.length; i++) {
 
-			var $button = $('<li><a class="ui-btn favListBtn">Remove \"' + favArray[i][0] + '\"</a></li>');
+			var $button = $('<li class="favListBtn"><a class="ui-btn">Remove \"' + favArray[i][0] + '\"</a></li>');
             var favElement = favArray[i][0];
-			var removeFavorite = function(page) {
-				return function() {
+            console.log("Displaying " + favElement);
+            
+            // remove the favorite of the given index
+			var removeFavorite = function(favIndex) {
+                return function() {
+                    var favArray = currentSettings.getFavorites();
+                    var favElement = favArray[favIndex][0];
 					// remove favorite
+                    console.log("Removing " + favElement);
 					favorites.delElement(favElement);
 
 					// close popup
 					$favoritesPopup.popup( "close" );
 
                     updateFavoritesList();
-				};
+                };
 			}
 
 			$button.click( removeFavorite(i) );
